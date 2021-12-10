@@ -1,0 +1,135 @@
+
+<!-- saved from url=(0138)https://infytq.onwingspan.com/common-content-store/Shared/Shared/Public/lex_auth_01274674647749427215_shared/web-hosted/assets/index3.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link href="./normalize.min.css" rel="stylesheet"><link href="./css" rel="stylesheet"><link href="./web-module.css" rel="stylesheet"><link href="./sunburst.css" rel="stylesheet"><script type="text/javascript" src="./prettify.js.download"></script><script type="text/javascript">
+     document.body.classList.add('app-background', 'indigo', 'custom-scroll-small');
+        for(var i=0; i < document.querySelectorAll("[style]").length; i = i + 1 ) {
+            document.querySelectorAll("[style]")[i].setAttribute('style', null);
+          }
+          for(var i=0; i < document.querySelectorAll("pre").length; i = i + 1 ) {
+            document.querySelectorAll("pre")[i].classList.add('prettyprint');
+            document.querySelectorAll("pre")[i].setAttribute("id", "codepane"+i);
+            document.querySelectorAll("pre")[i].classList.add('prettyprint');
+            var btn = document.createElement("BUTTON");
+            btn.innerHTML = "<img src='/assets/common/plugins/web-module/copyButtonImage.svg'/>";
+            var newParam = "codepane"+i;
+            var nParam = "copyButton"+i;
+            btn.setAttribute("id", nParam);
+            btn.setAttribute("class", "transparent-button")
+            btn.style.float = "right";
+            btn.style.color = "white";
+            btn.setAttribute("onclick", "copyToClipBoardFunction("+newParam+","+nParam+")");
+            document.querySelectorAll("pre")[i].appendChild(btn)
+          }
+          for(var i=0; i < document.querySelectorAll(".prettyprint").length; i = i + 1 ) {
+            document.querySelectorAll(".prettyprint")[i].classList.add('linenums:1');
+          }
+          function copyToClipBoardFunction(param, nParam) {
+            nParam.innerText = "Copied!";
+            nParam.setAttribute("class","button-of-material disabled-button");
+            const id = 'mycustom-clipboard-textarea-hidden-id';
+            let existsTextarea = document.getElementById(id);
+            if (!existsTextarea) {
+              const textarea = document.createElement('textarea');
+              textarea.id = id;
+              // Place in top-left corner of screen regardless of scroll position.
+              textarea.style.position = 'fixed';
+              textarea.style.top = '0px';
+              textarea.style.left = '0px';
+              // Ensure it has a small width and height. Setting to 1px / 1em
+              // doesn't work as this gives a negative w/h on some browsers.
+              textarea.style.width = '1px';
+              textarea.style.height = '1px';
+              // We don't need padding, reducing the size if it does flash render.
+              textarea.style.padding = '0px';
+              // Clean up any borders.
+              textarea.style.border = 'none';
+              textarea.style.outline = 'none';
+              textarea.style.boxShadow = 'none';
+              // Avoid flash of white box if rendered for any reason.
+              textarea.style.background = 'transparent';
+              document.querySelector('body').appendChild(textarea);
+              existsTextarea = document.getElementById(id);
+            } else {
+            }
+            existsTextarea.value = param.innerText.slice(0,param.innerText.length-7);
+            existsTextarea.select();
+            try {
+              const status = document.execCommand('copy');
+              if (!status) {
+                logger.error('Cannot copy text');
+              } else {
+                const tooltip = document.getElementById('myTooltip');
+                tooltip.innerHTML = 'Code Copied!';
+              }
+            } catch (err) {
+            }
+            setTimeout(
+              function() {
+                nParam.innerHTML = "<img src='/assets/common/plugins/web-module/copyButtonImage.svg'/>";
+                nParam.setAttribute("class","transparent-button");
+              }, 1000);
+          }</script><style>
+          .transparent-button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+          }
+          .transparent-button:focus {
+            outline: none;
+          }
+          .button-of-material {
+          background-color: #3f51b5;
+          color: #fff !important;
+          box-sizing: border-box;
+          position: relative;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          cursor: pointer;
+          outline: 0;
+          border: none;
+          -webkit-tap-highlight-color: transparent;
+          display: inline-block;
+          white-space: nowrap;
+          text-decoration: none;
+          vertical-align: baseline;
+          text-align: center;
+          margin: 0;
+          line-height: 32px;
+          padding: 0 8px;
+          border-radius: 4px;
+          overflow: visible;
+          transform: translate3d(0, 0, 0);
+          transition: background .4s cubic-bezier(.25, .8, .25, 1), box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+          font-family: Roboto, "Helvetica Neue", sans-serif;
+          font-size: 14px;
+          font-weight: 300;
+      }
+
+      .disabled-button {
+          color: black !important;
+          background-color: white;
+      }
+
+      .ripple {
+          background-position: center;
+          transition: background 0.8s;
+      }
+
+      .ripple:hover {
+          background: #2f41a5 radial-gradient(circle, transparent 1%, #2f41a5 1%) center/15000%;
+      }
+
+      .ripple:active {
+          background-color: #5f7fdf;
+          background-size: 100%;
+          transition: background 0s;
+      }</style></head><body class="app-background indigo custom-scroll-small" style="font-size: 20px; background-color: rgb(250, 250, 250); color: rgb(0, 0, 0);"><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<img alt="" height="297" src="./F14.PNG" width="567" style="null"></p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
+
+<pre class="prettyprint linenums:1 prettyprinted" id="codepane0" style=""><ol class="linenums"><li value="1" class="L0"><code class="language-python"><span class="pln">add1</span><span class="pun">=</span><span class="typ">Address</span><span class="pun">(</span><span class="lit">123</span><span class="pun">,</span><span class="str">"5th Lane"</span><span class="pun">,</span><span class="lit">56001</span><span class="pun">)</span></code></li><li class="L1"><code class="language-python"><span class="pln">add2</span><span class="pun">=</span><span class="typ">Address</span><span class="pun">(</span><span class="lit">567</span><span class="pun">,</span><span class="str">"6th Lane"</span><span class="pun">,</span><span class="lit">82006</span><span class="pun">)</span></code></li><li class="L2"><code class="language-python"></code></li><li class="L3"><code class="language-python"><span class="pln">cus1</span><span class="pun">=</span><span class="typ">Customer</span><span class="pun">(</span><span class="str">"Jack"</span><span class="pun">,</span><span class="lit">24</span><span class="pun">,</span><span class="lit">1234</span><span class="pun">,</span><span class="pln">add1</span><span class="pun">)</span></code></li><li class="L4"><code class="language-python"><span class="pln">cus2</span><span class="pun">=</span><span class="typ">Customer</span><span class="pun">(</span><span class="str">"Jane"</span><span class="pun">,</span><span class="lit">25</span><span class="pun">,</span><span class="lit">5678</span><span class="pun">,</span><span class="pln">add2</span><span class="pun">)</span></code><button id="copyButton0" class="transparent-button" onclick="copyToClipBoardFunction(codepane0,copyButton0)" style="float: right; color: white;"><img src="./copyButtonImage.svg"></button></li></ol></pre>
+
+<p>&nbsp;</p>
+</body></html>

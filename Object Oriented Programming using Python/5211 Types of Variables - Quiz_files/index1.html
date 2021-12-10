@@ -1,0 +1,384 @@
+
+<!-- saved from url=(0139)https://infytq.onwingspan.com/common-content-store/Shared/Shared/Public/lex_auth_012737510264905728844_shared/web-hosted/assets/index1.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OOPR</title>
+    <script type="text/javascript" src="./jquery.min.js.download"></script>
+    <script type="text/javascript" src="./jqueryui.min.js.download"></script>
+    <script type="text/javascript" src="./jquery.ui.touch-punch.min.js.download"></script>
+    <script src="./quiz.js.download"></script>
+    <script type="text/javascript" src="./main.js.download"></script>
+    <style>
+      li {
+        margin: 10px 0;
+      }
+
+      li {
+        line-height: 175%;
+      }
+
+      div[id^="dd"] {
+        min-height: 70px;
+        max-height: 200px;
+        min-width: 30px;
+        padding: 5px;
+      }
+
+      .fbox {
+        border: solid 1px turquoise;
+        margin: 10px;
+      }
+
+      #origin {
+        width: 200px;
+      }
+
+      #origin div,
+      div[id^="dd"] div {
+        margin-top: 3px;
+        margin-left: 5px;
+        background-color: aliceblue;
+      }
+
+      .over {
+        border: solid 1px #f5f5f5;
+      }
+
+      .draggable {
+        border: solid 1px gray;
+        padding: 5px;
+        background-color: aliceblue;
+        margin: 5px;
+      }
+
+      .stayFixed {
+        min-height: 100px;
+      }
+
+      #wrapper {
+        margin: 10px;
+        padding-left: 5px;
+      }
+
+      #drp {
+        padding: 10px;
+      }
+
+      .flex-space-around {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+      }
+
+      .two-div {
+        width: 45%;
+        padding: 2%;
+        min-width: 250px;
+      }
+
+      .one-third-div {
+        width: 25%;
+        min-width: 200px;
+      }
+
+      .two-third-div {
+        width: 65%;
+        min-width: 250px;
+      }
+
+      .two-div-small {
+        width: 45%;
+        padding: 2%;
+      }
+
+      .overflow-auto {
+        overflow: auto;
+      }
+
+      .margin-auto {
+        margin: auto;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      .button-of-material {
+        background-color: #3f51b5;
+        color: #fff;
+        box-sizing: border-box;
+        position: relative;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        cursor: pointer;
+        outline: 0;
+        border: none;
+        -webkit-tap-highlight-color: transparent;
+        display: inline-block;
+        white-space: nowrap;
+        text-decoration: none;
+        vertical-align: baseline;
+        text-align: center;
+        margin: 0;
+        min-width: 64px;
+        line-height: 36px;
+        padding: 0 16px;
+        border-radius: 4px;
+        overflow: visible;
+        transform: translate3d(0, 0, 0);
+        transition: background 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+        font-size: 14px;
+        font-weight: 300;
+      }
+
+      .disabled-button {
+        color: rgba(0, 0, 0, 0.26);
+        background-color: rgba(0, 0, 0, 0.12);
+      }
+
+      .ripple {
+        background-position: center;
+        transition: background 0.8s;
+      }
+
+      .ripple:hover {
+        background: #2f41a5 radial-gradient(circle, transparent 1%, #2f41a5 1%) center/15000%;
+      }
+
+      .ripple:active {
+        background-color: #5f7fdf;
+        background-size: 100%;
+        transition: background 0s;
+      }
+
+      .text-danger {
+        color: #e44061 !important;
+        font-weight: normal !important;
+      }
+
+      .text-success {
+        color: #3c763d !important;
+        font-weight: normal !important;
+      }
+
+      .width-33 {
+        width: 33px;
+      }
+
+      .height-32 {
+        height: 32px;
+      }
+
+      .width-10 {
+        width:10px;
+      }
+    </style>
+  <link href="./normalize.min.css" rel="stylesheet"><link href="./css" rel="stylesheet"><link href="./web-module.css" rel="stylesheet"><link href="./sunburst.css" rel="stylesheet"><script type="text/javascript" src="./prettify.js.download"></script><script type="text/javascript">
+     document.body.classList.add('app-background', 'indigo', 'custom-scroll-small');
+        for(var i=0; i < document.querySelectorAll("[style]").length; i = i + 1 ) {
+            document.querySelectorAll("[style]")[i].setAttribute('style', null);
+          }
+          for(var i=0; i < document.querySelectorAll("pre").length; i = i + 1 ) {
+            document.querySelectorAll("pre")[i].classList.add('prettyprint');
+            document.querySelectorAll("pre")[i].setAttribute("id", "codepane"+i);
+            document.querySelectorAll("pre")[i].classList.add('prettyprint');
+            var btn = document.createElement("BUTTON");
+            btn.innerHTML = "<img src='/assets/common/plugins/web-module/copyButtonImage.svg'/>";
+            var newParam = "codepane"+i;
+            var nParam = "copyButton"+i;
+            btn.setAttribute("id", nParam);
+            btn.setAttribute("class", "transparent-button")
+            btn.style.float = "right";
+            btn.style.color = "white";
+            btn.setAttribute("onclick", "copyToClipBoardFunction("+newParam+","+nParam+")");
+            document.querySelectorAll("pre")[i].appendChild(btn)
+          }
+          for(var i=0; i < document.querySelectorAll(".prettyprint").length; i = i + 1 ) {
+            document.querySelectorAll(".prettyprint")[i].classList.add('linenums:1');
+          }
+          function copyToClipBoardFunction(param, nParam) {
+            nParam.innerText = "Copied!";
+            nParam.setAttribute("class","button-of-material disabled-button");
+            const id = 'mycustom-clipboard-textarea-hidden-id';
+            let existsTextarea = document.getElementById(id);
+            if (!existsTextarea) {
+              const textarea = document.createElement('textarea');
+              textarea.id = id;
+              // Place in top-left corner of screen regardless of scroll position.
+              textarea.style.position = 'fixed';
+              textarea.style.top = '0px';
+              textarea.style.left = '0px';
+              // Ensure it has a small width and height. Setting to 1px / 1em
+              // doesn't work as this gives a negative w/h on some browsers.
+              textarea.style.width = '1px';
+              textarea.style.height = '1px';
+              // We don't need padding, reducing the size if it does flash render.
+              textarea.style.padding = '0px';
+              // Clean up any borders.
+              textarea.style.border = 'none';
+              textarea.style.outline = 'none';
+              textarea.style.boxShadow = 'none';
+              // Avoid flash of white box if rendered for any reason.
+              textarea.style.background = 'transparent';
+              document.querySelector('body').appendChild(textarea);
+              existsTextarea = document.getElementById(id);
+            } else {
+            }
+            existsTextarea.value = param.innerText.slice(0,param.innerText.length-7);
+            existsTextarea.select();
+            try {
+              const status = document.execCommand('copy');
+              if (!status) {
+                logger.error('Cannot copy text');
+              } else {
+                const tooltip = document.getElementById('myTooltip');
+                tooltip.innerHTML = 'Code Copied!';
+              }
+            } catch (err) {
+            }
+            setTimeout(
+              function() {
+                nParam.innerHTML = "<img src='/assets/common/plugins/web-module/copyButtonImage.svg'/>";
+                nParam.setAttribute("class","transparent-button");
+              }, 1000);
+          }</script><style>
+          .transparent-button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+          }
+          .transparent-button:focus {
+            outline: none;
+          }
+          .button-of-material {
+          background-color: #3f51b5;
+          color: #fff !important;
+          box-sizing: border-box;
+          position: relative;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          cursor: pointer;
+          outline: 0;
+          border: none;
+          -webkit-tap-highlight-color: transparent;
+          display: inline-block;
+          white-space: nowrap;
+          text-decoration: none;
+          vertical-align: baseline;
+          text-align: center;
+          margin: 0;
+          line-height: 32px;
+          padding: 0 8px;
+          border-radius: 4px;
+          overflow: visible;
+          transform: translate3d(0, 0, 0);
+          transition: background .4s cubic-bezier(.25, .8, .25, 1), box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+          font-family: Roboto, "Helvetica Neue", sans-serif;
+          font-size: 14px;
+          font-weight: 300;
+      }
+
+      .disabled-button {
+          color: black !important;
+          background-color: white;
+      }
+
+      .ripple {
+          background-position: center;
+          transition: background 0.8s;
+      }
+
+      .ripple:hover {
+          background: #2f41a5 radial-gradient(circle, transparent 1%, #2f41a5 1%) center/15000%;
+      }
+
+      .ripple:active {
+          background-color: #5f7fdf;
+          background-size: 100%;
+          transition: background 0s;
+      }</style></head>
+
+  <body class="app-background indigo custom-scroll-small" style="font-size: 20px; background-color: rgb(250, 250, 250); color: rgb(0, 0, 0);">
+    <div class="col-md-12" id="quiz">
+      <div id="q23">
+        <p>
+          Analyze the code given below and identify the buckets to which the variables and methods can be placed.
+        </p>
+        <div>
+          <div class="overflow-auto">
+            <pre class="line-numbers language-python prettyprint linenums:1 prettyprinted" id="codepane0" style=""><ol class="linenums"><li value="1" class="L0"><span class="pln">                                                        </span><code class="language-python"></code></li><li class="L1"><code class="language-python"><span class="pln">        </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Lion</span><span class="pun">:</span></code></li><li class="L2"><code class="language-python"><span class="pln">            __water_source</span><span class="pun">=</span><span class="str">"well in the circus"</span></code></li><li class="L3"><code class="language-python"><span class="pln">        </span></code></li><li class="L4"><code class="language-python"><span class="pln">            </span><span class="kwd">def</span><span class="pln"> __init__</span><span class="pun">(</span><span class="pln">self</span><span class="pun">,</span><span class="pln">name</span><span class="pun">,</span><span class="pln"> gender</span><span class="pun">):</span></code></li><li class="L5"><code class="language-python"><span class="pln">                self</span><span class="pun">.</span><span class="pln">__name</span><span class="pun">=</span><span class="pln">name</span></code></li><li class="L6"><code class="language-python"><span class="pln">                self</span><span class="pun">.</span><span class="pln">__gender</span><span class="pun">=</span><span class="pln">gender</span></code></li><li class="L7"><code class="language-python"><span class="pln">        </span></code></li><li class="L8"><code class="language-python"><span class="pln">            </span><span class="kwd">def</span><span class="pln"> drinks_water</span><span class="pun">(</span><span class="pln">self</span><span class="pun">):</span></code></li><li class="L9"><code class="language-python"><span class="pln">                </span><span class="kwd">print</span><span class="pun">(</span><span class="pln">self</span><span class="pun">.</span><span class="pln">__name</span><span class="pun">,</span></code></li><li class="L0"><code class="language-python"><span class="pln">                </span><span class="str">"drinks water from the"</span><span class="pun">,</span><span class="typ">Lion</span><span class="pun">.</span><span class="pln">__water_source</span><span class="pun">)</span></code></li><li class="L1"><code class="language-python"><span class="pln">        </span></code></li><li class="L2"><code class="language-python"><span class="pln">            </span><span class="lit">@staticmethod</span></code></li><li class="L3"><code class="language-python"><span class="pln">            </span><span class="kwd">def</span><span class="pln"> get_water_source</span><span class="pun">():</span></code></li><li class="L4"><code class="language-python"><span class="pln">                </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">Lion</span><span class="pun">.</span><span class="pln">__water_source</span></code></li><li class="L5"><code class="language-python"><span class="pln">        </span></code></li><li class="L6"><code class="language-python"><span class="pln">        simba</span><span class="pun">=</span><span class="typ">Lion</span><span class="pun">(</span><span class="str">"Simba"</span><span class="pun">,</span><span class="str">"Male"</span><span class="pun">)</span></code></li><li class="L7"><code class="language-python"><span class="pln">        simba</span><span class="pun">.</span><span class="pln">drinks_water</span><span class="pun">()</span></code></li><li class="L8"><code class="language-python"><span class="pln">        </span><span class="kwd">print</span><span class="pun">(</span><span class="pln"> </span><span class="str">"Water source of lions:"</span><span class="pun">,</span><span class="typ">Lion</span><span class="pun">.</span><span class="pln">get_water_source</span><span class="pun">())</span></code></li><li class="L9"><code class="language-python"><span class="pln">                                    </span></code></li><li class="L0"><span class="pln">                                                    </span><button id="copyButton0" class="transparent-button" onclick="copyToClipBoardFunction(codepane0,copyButton0)" style="float: right; color: white;"><img src="./copyButtonImage.svg"></button></li></ol></pre>
+            <br>
+          </div>
+          <div>
+            <div id="wrapper" class="dragDropQuiz flex-space-around">
+              <div class="stayFixed one-third-div">
+                <div id="origin" class="ui-droppable">
+                  <div id="1" title="one" class="draggable ui-draggable ui-draggable-handle" style="null">name</div>
+                  <div id="2" title="two" class="draggable ui-draggable ui-draggable-handle" style="null">gender</div>
+                  <div id="3" title="three" class="draggable ui-draggable ui-draggable-handle" style="null">water_source</div>
+                  <div id="4" title="four" class="draggable ui-draggable ui-draggable-handle" style="null">drinks_water(self)</div>
+                  <div id="5" title="five" class="draggable ui-draggable ui-draggable-handle" style="null">get_water_source()</div>
+                </div>
+              </div>
+              <div class="flex-space-around two-third-div margin-auto">
+                <div class="two-div">
+                  <div class=" col-md-6" id="drp">
+                    <label>Instance Variables</label>
+                    <div class="css-shapes-preview fbox ui-droppable ui-sortable" id="dd1"></div>
+                  </div>
+                  <div class="col-md-6" id="drp">
+                    <label>Static Variables</label>
+                    <div class="css-shapes-preview fbox ui-droppable ui-sortable" id="dd2"></div>
+                  </div>
+                </div>
+                <div class="two-div">
+                  <div class="col-md-6" id="drp">
+                    <label>Instance Methods</label>
+                    <div class="css-shapes-preview fbox ui-droppable ui-sortable" id="dd3"></div>
+                  </div>
+                  <div class="col-md-6" id="drp">
+                    <label>Static Methods</label>
+                    <div class="css-shapes-preview fbox ui-droppable ui-sortable" id="dd4"></div>
+                  </div>
+                </div>
+              </div>
+              <br>
+            </div>
+            <button class="btn btn-inverse button-of-material ripple" id="submitAnswer" type="button">Submit</button>
+            <div id="tell">
+              <p id="telltext"></p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <br>
+          <div class="col-md-1 width-33">
+            <img id="verify">
+          </div>
+          <div class="col-md-3">
+            <div id="q23m"></div>
+            <br>
+          </div>
+          <div class="col-md-8"></div>
+        </div>
+        <div class="row">
+          <div class="col-md-1 width-33">
+            <img class="height-32" id="hintmark">
+          </div>
+          <div class="col-md-1 width-10"></div>
+          <div class="col-md-10">
+            <p rowspan="4" id="hint" style="display: none;"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+</body></html>

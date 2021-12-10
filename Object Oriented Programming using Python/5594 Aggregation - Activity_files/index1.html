@@ -1,0 +1,295 @@
+
+<!-- saved from url=(0139)https://infytq.onwingspan.com/common-content-store/Shared/Shared/Public/lex_auth_012731892882137088185_shared/web-hosted/assets/index1.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link href="./normalize.min.css" rel="stylesheet"><link href="./css" rel="stylesheet"><link href="./web-module.css" rel="stylesheet"><link href="./sunburst.css" rel="stylesheet"><script type="text/javascript" src="./prettify.js.download"></script><script type="text/javascript">
+     document.body.classList.add('app-background', 'indigo', 'custom-scroll-small');
+        for(var i=0; i < document.querySelectorAll("[style]").length; i = i + 1 ) {
+            document.querySelectorAll("[style]")[i].setAttribute('style', null);
+          }
+          for(var i=0; i < document.querySelectorAll("pre").length; i = i + 1 ) {
+            document.querySelectorAll("pre")[i].classList.add('prettyprint');
+            document.querySelectorAll("pre")[i].setAttribute("id", "codepane"+i);
+            document.querySelectorAll("pre")[i].classList.add('prettyprint');
+            var btn = document.createElement("BUTTON");
+            btn.innerHTML = "<img src='/assets/common/plugins/web-module/copyButtonImage.svg'/>";
+            var newParam = "codepane"+i;
+            var nParam = "copyButton"+i;
+            btn.setAttribute("id", nParam);
+            btn.setAttribute("class", "transparent-button")
+            btn.style.float = "right";
+            btn.style.color = "white";
+            btn.setAttribute("onclick", "copyToClipBoardFunction("+newParam+","+nParam+")");
+            document.querySelectorAll("pre")[i].appendChild(btn)
+          }
+          for(var i=0; i < document.querySelectorAll(".prettyprint").length; i = i + 1 ) {
+            document.querySelectorAll(".prettyprint")[i].classList.add('linenums:1');
+          }
+          function copyToClipBoardFunction(param, nParam) {
+            nParam.innerText = "Copied!";
+            nParam.setAttribute("class","button-of-material disabled-button");
+            const id = 'mycustom-clipboard-textarea-hidden-id';
+            let existsTextarea = document.getElementById(id);
+            if (!existsTextarea) {
+              const textarea = document.createElement('textarea');
+              textarea.id = id;
+              // Place in top-left corner of screen regardless of scroll position.
+              textarea.style.position = 'fixed';
+              textarea.style.top = '0px';
+              textarea.style.left = '0px';
+              // Ensure it has a small width and height. Setting to 1px / 1em
+              // doesn't work as this gives a negative w/h on some browsers.
+              textarea.style.width = '1px';
+              textarea.style.height = '1px';
+              // We don't need padding, reducing the size if it does flash render.
+              textarea.style.padding = '0px';
+              // Clean up any borders.
+              textarea.style.border = 'none';
+              textarea.style.outline = 'none';
+              textarea.style.boxShadow = 'none';
+              // Avoid flash of white box if rendered for any reason.
+              textarea.style.background = 'transparent';
+              document.querySelector('body').appendChild(textarea);
+              existsTextarea = document.getElementById(id);
+            } else {
+            }
+            existsTextarea.value = param.innerText.slice(0,param.innerText.length-7);
+            existsTextarea.select();
+            try {
+              const status = document.execCommand('copy');
+              if (!status) {
+                logger.error('Cannot copy text');
+              } else {
+                const tooltip = document.getElementById('myTooltip');
+                tooltip.innerHTML = 'Code Copied!';
+              }
+            } catch (err) {
+            }
+            setTimeout(
+              function() {
+                nParam.innerHTML = "<img src='/assets/common/plugins/web-module/copyButtonImage.svg'/>";
+                nParam.setAttribute("class","transparent-button");
+              }, 1000);
+          }</script><style>
+          .transparent-button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+          }
+          .transparent-button:focus {
+            outline: none;
+          }
+          .button-of-material {
+          background-color: #3f51b5;
+          color: #fff !important;
+          box-sizing: border-box;
+          position: relative;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          cursor: pointer;
+          outline: 0;
+          border: none;
+          -webkit-tap-highlight-color: transparent;
+          display: inline-block;
+          white-space: nowrap;
+          text-decoration: none;
+          vertical-align: baseline;
+          text-align: center;
+          margin: 0;
+          line-height: 32px;
+          padding: 0 8px;
+          border-radius: 4px;
+          overflow: visible;
+          transform: translate3d(0, 0, 0);
+          transition: background .4s cubic-bezier(.25, .8, .25, 1), box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+          font-family: Roboto, "Helvetica Neue", sans-serif;
+          font-size: 14px;
+          font-weight: 300;
+      }
+
+      .disabled-button {
+          color: black !important;
+          background-color: white;
+      }
+
+      .ripple {
+          background-position: center;
+          transition: background 0.8s;
+      }
+
+      .ripple:hover {
+          background: #2f41a5 radial-gradient(circle, transparent 1%, #2f41a5 1%) center/15000%;
+      }
+
+      .ripple:active {
+          background-color: #5f7fdf;
+          background-size: 100%;
+          transition: background 0s;
+      }</style></head><body class="app-background indigo custom-scroll-small" style="font-size: 20px; background-color: rgb(250, 250, 250); color: rgb(0, 0, 0);"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title></title>
+<script type="text/javascript" src="./jquery.min.js.download"></script>
+<style type="text/css">*[data-label] {
+            border: 1px solid white;
+        }
+
+        .highlight {
+            border: 1px solid red;
+        }
+
+        div[class^="col-md"] {
+            position: relative;
+            min-height: 1px;
+            padding-right: 15px !important;
+            padding-left: 15px !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .margin-top-m {
+            margin-top: 24px;
+        }
+        
+        .flex-space-wrap {
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: space-around;
+        }
+
+        .flex-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .flex {
+            display: flex;
+        }
+</style>
+<div id="container">
+<div class="margin-top-m flex-space-wrap">
+<div class="col-mod-5 flex" data-label="cust1">
+<div class="col-md-4"><label data-label="cust1.name" id="name">name: Jack</label><br>
+<br>
+<label data-label="cust1.age" id="age">age: 24</label><br>
+<br>
+<br>
+<label data-label="cust1.phone" id="phone">phone: 1234</label> <!--<input type="text" id="txt1" /><br /><br /><input type="text" id="txt2" />--></div>
+
+<div class="col-md-3 flex-column"><img alt="" height="40" src="./upArrow.png" width="50"> <img alt="" height="2" src="./line.png" width="50"> <img alt="" height="50" src="./downArrow.png" width="50" style="null"></div>
+
+<div class="col-md-4 A" data-label="cust11"><img alt="" height="150" src="./cust1.png">
+<center><label>Cust1</label></center>
+</div>
+</div>
+
+<div class="col-md-2 text-center"><br>
+<br>
+<img alt="" height="2" src="./line.png" width="100" style="null"><br>
+<label id="address">Address</label><br>
+&nbsp;</div>
+
+<div class="col-mod-5 flex" data-label="address1">
+<div class="col-md-4 B" data-label="address11"><img alt="" height="100" src="./card1.jpg"></div>
+
+<div class="col-md-3 flex-column"><img alt="" height="50" src="./downArrow.png" width="50"> <img alt="" height="2" src="./line.png" width="50"> <img alt="" height="50" src="./upArrow.png" width="50" style="null"></div>
+
+<div class="col-md-4"><label data-label="address1.door" id="door" s="">door: 123</label><br>
+<br>
+<label data-label="address1.street" id="street">street: 5th lane</label><br>
+<br>
+<label data-label="address1.pincode" id="pincode">pincode: 56001</label> <!--<input type="text" id="txt1" /><br /><br /><input type="text" id="txt2" />--></div>
+</div>
+</div>
+
+<div class="margin-top-m flex-space-wrap">
+<div class="col-mod-5 flex" data-label="cust2">
+<div class="col-md-4"><label data-label="cust2.name" id="name">name: Jane</label><br>
+<br>
+<label data-label="cust2.age" id="age">age: 25</label><br>
+<br>
+<br>
+<label data-label="cust2.phone" id="phone">phone: 5678</label> <!--<input type="text" id="txt1" /><br /><br /><input type="text" id="txt2" />--></div>
+
+<div class="col-md-3 flex-column"><img alt="" height="50" src="./upArrow.png" width="50"> <img alt="" height="2" src="./line.png" width="50"> <img alt="" height="50" src="./downArrow.png" width="50" style="null"></div>
+
+<div class="col-md-4 c" data-label="cust21"><img alt="" height="150" src="./cust2.png">
+<center><label>Cust2</label></center>
+</div>
+</div>
+
+<div class="col-md-2 text-center"><br>
+<br>
+<img alt="" height="2" src="./line.png" width="100" style="null"><br>
+<label id="address">Address</label><br>
+&nbsp;</div>
+
+<div class="col-mod-5 flex" data-label="address2">
+<div class="col-md-4 d" data-label="address21"><img alt="" height="100" src="./card2.jpg" width="169" style="null"></div>
+
+<div class="col-md-3 flex-column"><img alt="" height="50" src="./downArrow.png" width="50"> <img alt="" height="2" src="./line.png" width="50"> <img alt="" height="50" src="./upArrow.png" width="50" style="null"></div>
+
+<div class="col-md-4"><label data-label="address2.door" id="door">door: 567</label><br>
+<br>
+<label data-label="address2.street" id="street">street: 6th lane</label><br>
+<br>
+<label data-label="address2.pincode" id="pincode">pincode: 82006</label> <!--<input type="text" id="txt1" /><br /><br /><input type="text" id="txt2" />--></div>
+</div>
+</div>
+
+<div class="text-center margin-top-m">
+<p>Type cust1.address.door in the text box below.</p>
+<input id="txt1" type="text"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Note :</b>Tryout other combinations as well.</div>
+</div>
+<script>
+        $(function () {
+
+            $("#txt1").keyup(function () {
+                var textValue = $("#txt1").val().toLowerCase();
+
+                $('body [data-label]').removeClass('highlight');
+                $('.hideImage').hide();
+
+
+                function getSplitString(str, delimiter, start) {
+                    var tokens = start < 0 ? str.split(delimiter).slice(0, start) : str.split(delimiter).slice(start),
+                        result = tokens.join(delimiter);
+                    console.log(result);
+                    return result;
+                };
+
+
+                var splitArray = textValue.split(".");
+                var length = splitArray.length;
+                splitArray[1] += '' + splitArray[0].charAt(4);
+
+                if (length == 2) {
+                    if (splitArray[1].match("^add")) {
+                        $('body [data-label="' + splitArray[0] + '"]').removeClass('highlight');
+                        $('body [data-label="' + splitArray[0] + '1"]').addClass('highlight');
+                        var txt = textValue.replace(".", "_");
+                        $("#" + txt).show();
+                    }
+                    else {
+                        $('body [data-label="' + splitArray[0] + '"]').removeClass('highlight');
+                        $('body [data-label="' + splitArray[0] + '1"]').addClass('highlight');
+                    }
+                    $('body [data-label="' + splitArray[1] + '1"]').addClass('highlight');
+                    $('body [data-label="' + textValue + '"]').addClass('highlight');
+                } else if (length == 3) {
+                    textValue = splitArray[0] + '.' + splitArray[1] + '.' + splitArray[2];
+                    $('body [data-label="' + splitArray[0] + '1"]').addClass('highlight');
+                    $('body [data-label="' + splitArray[1] + '1"]').addClass('highlight');
+                    $('body [data-label="' + splitArray[1] + '"]').removeClass('highlight');
+
+                    $('body [data-label="' + getSplitString(textValue, ".", 1) + '"]').addClass('highlight');
+                    $('body [data-label="' + getSplitString(textValue, ".", -1) + '"]').addClass('highlight');
+                }
+                else if (length == 1) {
+                    $('body [data-label="' + splitArray[0] + '"]').addClass('highlight');
+                }
+
+            });
+
+        });
+    </script></body></html>

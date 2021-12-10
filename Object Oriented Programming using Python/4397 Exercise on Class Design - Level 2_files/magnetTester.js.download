@@ -1,0 +1,209 @@
+function arraysEqual(a, b) {
+    if (a === b) return true;
+    if (a == null || b == null) return false;
+    if (a.length != b.length) return false;
+
+    // If you don't care about the order of the elements inside
+    // the array, you should sort both arrays here.
+    a.sort(); b.sort();
+    for (var i = 0; i < a.length; ++i) {
+        if (a[i] !== b[i]) return false;
+    }
+    return true;
+}
+
+$(function () {
+
+    success = '<p class="text-success" id="telltext">Congratulations !!! Your answer is right.</p>';
+    error = '<p class="text-danger" id="telltext">Your answer is wrong.</p>';
+    infError = '<p class="text-danger" id="telltext">You have an infinite loop in your code. Please check</p>';
+
+
+    function pseudoInitialize(options) {
+        var numbers = Array.apply(0, Array(options.length)).map(function (v, i) { return i; });
+        numbers.sort(function () { return Math.random() - .5 });
+        $(function () {
+            $('#ansMagnets1').empty();
+            $('#ansMagnets2').empty();
+            $('#ansMagnets3').empty();
+            $('#qtnMagnets').empty();
+            $('#ansMagnets').empty();
+
+
+            var msgDiv = $('<div id="msgDiv" style="margin-bottom:10px;min-height:24px">');
+            $('#msgDiv').remove();
+            $('#submit').parent().prepend(msgDiv);
+
+            $("ul.droptrue").sortable({
+                connectWith: "ul",
+                cancel: 'h4',
+                receive: function (event, ui) {
+                    var par = $(ui.item).parent();
+                    var h = $(par).find('h4');
+                    h.remove();
+                    par.prepend(h);
+                },
+                sort: function (event, ui) {
+                    var par = $(ui.item).parent();
+                    var h = $(par).find('h4');
+                    h.remove();
+                    par.prepend(h);
+                }
+            });
+
+            $('#qtnMagnets').append('<h4>Options:</h4>');
+            for (var i = 0; i < numbers.length; i++) {
+                $('<li>' + options[numbers[i]] + '</li>').data('number', numbers[i]).attr('id', 'card' + numbers[i]).appendTo('#qtnMagnets');
+            }
+
+            $('#ansMagnets1').append('<h4>ClassName</h4>');
+            $('#ansMagnets2').append('<h4>Attributes</h4>');
+            $('#ansMagnets3').append('<h4>Methods</h4>');
+        })
+    }
+
+
+    pseudoInitialize(options);
+
+
+    function makeFile(data, fileName) {
+        const formdata = new FormData()
+        const blob = new Blob([JSON.stringify(data)], { type: 'application/json' })
+        try {
+            const file = new File([blob], fileName + '.json')
+            formdata.append('file', file)
+        } catch (ex) {
+            blob['lastModifiedDate'] = new Date()
+            formdata.append('file', blob, fileName + '.json')
+        }
+        return formdata
+    }
+
+    function storeResults(flag, userAnswers) {
+        var s = window.location.href;
+        var lexId = s.slice(s.lastIndexOf("/lex_auth") + 1, s.indexOf("/", s.lastIndexOf("/lex_auth") + 1));
+        // console.log(lexId);
+        var contentServiceCreateDirectory = "/apis/protected/v8/user/exercise/createContentDirectory/" + lexId;
+        var contentServiceUploadFile = "/apis/protected/v8/user/exercise/uploadFileToContentDirectory/" + lexId;
+        var nodeServicePostFileUrl = "/apis/protected/v8/user/code/pf/submit/" + lexId;
+        var date = new Date();
+        var fileName = "Submission_PF_" + date.getFullYear() + "_" + String(Number(date.getMonth()) + 1) + "_" + date.getDate() + "_" + date.getHours() + "_" + date.getMinutes() + "_" + date.getMilliseconds();
+        var data = {
+            "userAnswers": userAnswers,
+            "flag": flag
+        };
+        var file = makeFile(data, fileName)
+        $.ajax({
+            type: "POST", url: contentServiceCreateDirectory, success: function (result) {
+                // console.log(result);
+                $.ajax({
+                    type: "POST", url: contentServiceUploadFile, data: file, contentType: false, processData: false, success: function (result) {
+                        // console.log(result);
+                        var postFileUrlData = {
+                            user_id_type: "uuid",
+                            submission_type: "pf_pseudo_code",
+                            url: result.contentUrl,
+                            total_testcases: "1",
+                            testcases_passed: flag == 100 ? "1" : "0",
+                            testcases_failed: flag == 100 ? "0" : "1",
+                            result_percent: "100"
+                        };
+                        $.ajax({
+                            type: "POST", url: nodeServicePostFileUrl, data: postFileUrlData,
+                            success: function (jsonData) {
+                                if (jsonData.response == "Success") {
+                                    $("#tell").html('<p id="telltext">Your solution has been submitted.</p>');
+                                }
+                                else
+                                    $("#tell").html('<p id="telltext">Submission failed. Please try again after sometime.</p>');
+                            },
+                            error: function (xhr) {
+                                $("#tell").html('<p id="telltext">Submission failed. Please try again after sometime.</p>');
+                                // console.log(xhr);
+                            },
+                        });
+                    }
+                })
+            }, error: function (xhr, ajaxOptions, thrownError) {
+                // console.log(xhr.status);
+                if (xhr.status == "409") {
+                    $.ajax({
+                        type: "POST", url: contentServiceUploadFile, data: file, contentType: false, processData: false, success: function (result) {
+                            // console.log(result);
+                            var postFileUrlData = {
+                                "user_id_type": "uuid",
+                                "submission_type": "pf_pseudo_code",
+                                "url": result.contentUrl,
+                                "total_testcases": "1",
+                                testcases_passed: flag == 100 ? "1" : "0",
+                                testcases_failed: flag == 100 ? "0" : "1",
+                                "result_percent": "100"
+                            };
+                            $.ajax({
+                                type: "POST", url: nodeServicePostFileUrl, data: postFileUrlData,
+                                success: function (jsonData) {
+                                    // console.log(jsonData)
+                                    if (jsonData.response == "Success") {
+                                        $("#tell").html('<p id="telltext">Your solution has been submitted.</p>');
+                                    }
+                                    else
+                                        $("#tell").html('<p id="telltext">Submission failed. Please try again after sometime.</p>');
+                                },
+                                error: function (xhr) {
+                                    $("#tell").html('<p id="telltext">Submission failed. Please try again after sometime.</p>');
+                                    // console.log(xhr);
+                                },
+                            });
+                        }
+                    });
+                } else {
+                    // console.log("error");
+                    $("#tell").html('<p id="telltext">Submission failed. Please try again after sometime.</p>');
+                }
+            }
+        });
+    }
+
+
+    $('#submit').click(function () {
+        $('#tell').empty();
+        var userAnswers1 = [];
+        var userAnswers2 = [];
+        var userAnswers3 = [];
+
+        $("#ansMagnets1").children().each(function () {
+            userAnswers1.push($(this).attr('id') + "");
+        });
+        $("#ansMagnets2").children().each(function () {
+            userAnswers2.push($(this).attr('id') + "");
+        });
+        $("#ansMagnets3").children().each(function () {
+            userAnswers3.push($(this).attr('id') + "");
+        });
+
+
+        var flag = "";
+
+        if (arraysEqual(answers1, userAnswers1) && arraysEqual(answers2, userAnswers2) && arraysEqual(answers3, userAnswers3)) {
+            flag = 100;
+        } else {
+            flag = 0;
+        }
+        if (flag == 100) {
+            $("#msgDiv").html(success);
+        }
+        else {
+            $("#msgDiv").html(error);
+        }
+        var userAnswers = [userAnswers1, userAnswers2, userAnswers3]
+        storeResults(flag, userAnswers);
+    })
+
+    $('#reset').click(function () {
+        userAnswers = new Map();
+        $('div.ui-droppable').droppable('enable');
+        pseudoInitialize(options);
+        $("#tell").html('<p id="telltext"></p>');
+    })
+
+})

@@ -1,0 +1,156 @@
+
+<!-- saved from url=(0138)https://infytq.onwingspan.com/common-content-store/Shared/Shared/Public/lex_auth_01273113646613299263_shared/web-hosted/assets/index2.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link href="./normalize.min.css" rel="stylesheet"><link href="./css" rel="stylesheet"><link href="./web-module.css" rel="stylesheet"><link href="./sunburst.css" rel="stylesheet"><script type="text/javascript" src="./prettify.js.download"></script><script type="text/javascript">
+     document.body.classList.add('app-background', 'indigo', 'custom-scroll-small');
+        for(var i=0; i < document.querySelectorAll("[style]").length; i = i + 1 ) {
+            document.querySelectorAll("[style]")[i].setAttribute('style', null);
+          }
+          for(var i=0; i < document.querySelectorAll("pre").length; i = i + 1 ) {
+            document.querySelectorAll("pre")[i].classList.add('prettyprint');
+            document.querySelectorAll("pre")[i].setAttribute("id", "codepane"+i);
+            document.querySelectorAll("pre")[i].classList.add('prettyprint');
+            var btn = document.createElement("BUTTON");
+            btn.innerHTML = "<img src='/assets/common/plugins/web-module/copyButtonImage.svg'/>";
+            var newParam = "codepane"+i;
+            var nParam = "copyButton"+i;
+            btn.setAttribute("id", nParam);
+            btn.setAttribute("class", "transparent-button")
+            btn.style.float = "right";
+            btn.style.color = "white";
+            btn.setAttribute("onclick", "copyToClipBoardFunction("+newParam+","+nParam+")");
+            document.querySelectorAll("pre")[i].appendChild(btn)
+          }
+          for(var i=0; i < document.querySelectorAll(".prettyprint").length; i = i + 1 ) {
+            document.querySelectorAll(".prettyprint")[i].classList.add('linenums:1');
+          }
+          function copyToClipBoardFunction(param, nParam) {
+            nParam.innerText = "Copied!";
+            nParam.setAttribute("class","button-of-material disabled-button");
+            const id = 'mycustom-clipboard-textarea-hidden-id';
+            let existsTextarea = document.getElementById(id);
+            if (!existsTextarea) {
+              const textarea = document.createElement('textarea');
+              textarea.id = id;
+              // Place in top-left corner of screen regardless of scroll position.
+              textarea.style.position = 'fixed';
+              textarea.style.top = '0px';
+              textarea.style.left = '0px';
+              // Ensure it has a small width and height. Setting to 1px / 1em
+              // doesn't work as this gives a negative w/h on some browsers.
+              textarea.style.width = '1px';
+              textarea.style.height = '1px';
+              // We don't need padding, reducing the size if it does flash render.
+              textarea.style.padding = '0px';
+              // Clean up any borders.
+              textarea.style.border = 'none';
+              textarea.style.outline = 'none';
+              textarea.style.boxShadow = 'none';
+              // Avoid flash of white box if rendered for any reason.
+              textarea.style.background = 'transparent';
+              document.querySelector('body').appendChild(textarea);
+              existsTextarea = document.getElementById(id);
+            } else {
+            }
+            existsTextarea.value = param.innerText.slice(0,param.innerText.length-7);
+            existsTextarea.select();
+            try {
+              const status = document.execCommand('copy');
+              if (!status) {
+                logger.error('Cannot copy text');
+              } else {
+                const tooltip = document.getElementById('myTooltip');
+                tooltip.innerHTML = 'Code Copied!';
+              }
+            } catch (err) {
+            }
+            setTimeout(
+              function() {
+                nParam.innerHTML = "<img src='/assets/common/plugins/web-module/copyButtonImage.svg'/>";
+                nParam.setAttribute("class","transparent-button");
+              }, 1000);
+          }</script><style>
+          .transparent-button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+          }
+          .transparent-button:focus {
+            outline: none;
+          }
+          .button-of-material {
+          background-color: #3f51b5;
+          color: #fff !important;
+          box-sizing: border-box;
+          position: relative;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          cursor: pointer;
+          outline: 0;
+          border: none;
+          -webkit-tap-highlight-color: transparent;
+          display: inline-block;
+          white-space: nowrap;
+          text-decoration: none;
+          vertical-align: baseline;
+          text-align: center;
+          margin: 0;
+          line-height: 32px;
+          padding: 0 8px;
+          border-radius: 4px;
+          overflow: visible;
+          transform: translate3d(0, 0, 0);
+          transition: background .4s cubic-bezier(.25, .8, .25, 1), box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+          font-family: Roboto, "Helvetica Neue", sans-serif;
+          font-size: 14px;
+          font-weight: 300;
+      }
+
+      .disabled-button {
+          color: black !important;
+          background-color: white;
+      }
+
+      .ripple {
+          background-position: center;
+          transition: background 0.8s;
+      }
+
+      .ripple:hover {
+          background: #2f41a5 radial-gradient(circle, transparent 1%, #2f41a5 1%) center/15000%;
+      }
+
+      .ripple:active {
+          background-color: #5f7fdf;
+          background-size: 100%;
+          transition: background 0s;
+      }</style></head><body class="app-background indigo custom-scroll-small" style="font-size: 20px; background-color: rgb(250, 250, 250); color: rgb(0, 0, 0);"><p style="null">My Program is terminating with the following message: XXX: &lt;bound method {class.method} of&lt;__main__.class object at 0x013bd990&gt;&gt;</p>
+
+<p style="null"><strong>Possible Cause:</strong></p>
+
+<p style="null">You might have forgotten to use parenthesis after the method name.</p>
+
+<p style="null"><strong>Example</strong></p>
+
+<p style="null">The code below creates an instance of Elephant class and prints its 'age'.</p>
+
+<pre class="prettyprint linenums:1 prettyprinted" id="codepane0" style=""><ol class="linenums"><li value="1" class="L0"><code class="language-python"><span class="kwd">class</span><span class="pln"> </span><span class="typ">Elephant</span><span class="pun">:</span></code></li><li class="L1"><code class="language-python"><span class="pln">    </span><span class="kwd">def</span><span class="pln"> __init__</span><span class="pun">(</span><span class="kwd">self</span><span class="pun">,</span><span class="pln"> age</span><span class="pun">):</span></code></li><li class="L2"><code class="language-python"><span class="pln">        </span><span class="kwd">self</span><span class="pun">.</span><span class="pln">__age </span><span class="pun">=</span><span class="pln"> age</span></code></li><li class="L3"><code class="language-python"><span class="pln">        </span></code></li><li class="L4"><code class="language-python"><span class="pln">    </span><span class="kwd">def</span><span class="pln"> set_age</span><span class="pun">(</span><span class="kwd">self</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">value</span><span class="pun">):</span></code></li><li class="L5"><code class="language-python"><span class="pln">        </span><span class="kwd">self</span><span class="pun">.</span><span class="pln">__age </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">value</span></code></li><li class="L6"><code class="language-python"><span class="pln">    </span></code></li><li class="L7"><code class="language-python"><span class="pln">    </span><span class="kwd">def</span><span class="pln"> get_age</span><span class="pun">(</span><span class="kwd">self</span><span class="pun">):</span></code></li><li class="L8"><code class="language-python"><span class="pln">        </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">self</span><span class="pun">.</span><span class="pln">__age</span></code></li><li class="L9"><code class="language-python"><span class="pln">    </span></code></li><li class="L0"><code class="language-python"><span class="pln">jumbo </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Elephant</span><span class="pun">(</span><span class="lit">1</span><span class="pun">)</span></code></li><li class="L1"><code class="language-python"><span class="kwd">print</span><span class="pun">(</span><span class="str">"Age:"</span><span class="pun">,</span><span class="pln"> jumbo</span><span class="pun">.</span><span class="red-background"><span class="pln">get_age </span></span><span class="pun">)</span><span class="pln">  </span><span class="com"># Missing parenthesis</span></code><button id="copyButton0" class="transparent-button" onclick="copyToClipBoardFunction(codepane0,copyButton0)" style="float: right; color: white;"><img src="./copyButtonImage.svg"></button></li></ol></pre>
+
+<p style="null">Here we get the message "Age: &lt;bound method elephant.get_age of&lt;__main__.elephant object at 0x0000000002293390&gt;&gt;". When we do not use parenthesis after the method name, the method is not invoked. However, this is not an error i.e. no exceptions are thrown. The program just prints the description of the method. The get_age should be written as get_age().</p>
+
+<p style="null"><strong>How do I fix it?</strong></p>
+
+<p style="null">To invoke a method, always provide parenthesis following the method name.</p>
+
+<p style="null"><strong>Reinforce your learning and practice on:</strong></p>
+
+<p style="null">Syntax notations for methods and variables</p>
+<style type="text/css">.dark-blue-background {
+                    background: darkblue;
+                }
+                .red-background {
+                    background: red;
+                }
+</style>
+</body></html>

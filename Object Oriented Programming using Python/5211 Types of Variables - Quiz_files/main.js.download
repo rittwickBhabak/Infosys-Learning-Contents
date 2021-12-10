@@ -1,0 +1,82 @@
+﻿$(function () {
+    setTimeout(function(){
+        var success = '<p class="text-success" id="telltext">Congratulations !!! Your answer is right.</p>';
+        var error = '<p class="text-danger" id="telltext">Your answer is wrong.</p>';
+    
+        $(".draggable").draggable({ cursor: "crosshair", revert: "invalid" });
+
+        $("div[id^='dd']").droppable({
+            accept: ".draggable",
+            drop: function (event, ui) {
+                console.log("drop");
+            
+                $(this).removeClass("border").removeClass("over");
+                var dropped = ui.draggable;
+                var droppedOn = $(this);
+                $(dropped).detach().css({ top: 0, left: 0 }).appendTo(droppedOn);
+            
+            },
+            over: function (event, elem) {
+                $(this).addClass("over");
+                console.log("over");
+            },
+                    
+            out: function (event, elem) {
+                $(this).removeClass("over");
+            }
+        });
+        $("div[id^='dd']").sortable();
+
+        $("#origin").droppable({
+            accept: ".draggable", drop: function (event, ui) {
+                console.log("drop");
+                $(this).removeClass("border").removeClass("over");
+                var dropped = ui.draggable;
+                var droppedOn = $(this);
+                $(dropped).detach().css({ top: 0, left: 0 }).appendTo(droppedOn);
+
+
+            }
+        });
+        $("#submitAnswer").on('click',submit);
+    },1000);
+    var success = '<p class="text-success" id="telltext">Congratulations !!! Your answer is right.</p>';
+    var error = '<p class="text-danger" id="telltext">Your answer is wrong.</p>';
+   
+    $(".draggable").draggable({ cursor: "crosshair", revert: "invalid" });
+
+    $("div[id^='dd']").droppable({
+        accept: ".draggable",
+        drop: function (event, ui) {
+            console.log("drop");
+           
+            $(this).removeClass("border").removeClass("over");
+            var dropped = ui.draggable;
+            var droppedOn = $(this);
+            $(dropped).detach().css({ top: 0, left: 0 }).appendTo(droppedOn);
+           
+        },
+        over: function (event, elem) {
+            $(this).addClass("over");
+            console.log("over");
+        },
+                  
+        out: function (event, elem) {
+            $(this).removeClass("over");
+        }
+    });
+    $("div[id^='dd']").sortable();
+
+    $("#origin").droppable({
+        accept: ".draggable", drop: function (event, ui) {
+            console.log("drop");
+            $(this).removeClass("border").removeClass("over");
+            var dropped = ui.draggable;
+            var droppedOn = $(this);
+            $(dropped).detach().css({ top: 0, left: 0 }).appendTo(droppedOn);
+
+
+        }
+    });
+    $("#submitAnswer").on('click',submit);
+});

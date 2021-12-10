@@ -1,0 +1,80 @@
+
+$(function () {
+
+    var index = 0;
+
+    var images = [
+        "OOPE1.png",
+        "OOPE2.png",
+        "OOPE3.png",
+    ];
+
+    var telltext = [
+                    "Have you included all the attributes and methods of the class you are coding?  Do you want to check this before verifying? <br /> Class structure gives the outline of the class you are coding in Eclipse.  To view the class structure, click on Window -> Show View -> Other.",
+                    "Show View -> Other dialog opens, select General -> Outline and click on 'Ok'",
+                    "Class structure will be displayed in the Outline window."
+    ];
+
+    $("#nextf").click(function () {
+
+        index = index + 1;
+        var temp = index + 1;
+        $("#navtext").html( temp + " of " + 3);
+        if (index < images.length) {
+
+            $("#img").attr("src", images[index]);
+            //$("#img").attr("height", 400);
+            //$("#img").attr("width", 800);
+            $("#content").html(telltext[index]);
+
+            renderPage(index);
+            return false;
+        } else {
+            return true;
+        }
+
+    });
+
+    $("#prevf").click(function () {
+
+        index = index - 1;
+        var temp = index + 1;
+        $("#navtext").html( temp + " of " + 3);
+        if (index >= 0) {
+
+            $("#img").attr("src", images[index]);
+            //$("#img").attr("height", 400);
+            //$("#img").attr("width", 800);
+            $("#content").html(telltext[index]);
+
+            renderPage(index);
+            return false;
+        } else {
+            return true;
+        }
+    });
+
+    function renderPage(index) {
+        if (index == 0) {
+            $("#prevf").prop("disabled", true);
+            $("#prevf").addClass("disabled-button");
+            $("#prevf").removeClass("ripple");
+        } else {
+            $("#prevf").prop("disabled", false);
+            $("#prevf").removeClass("disabled-button");  
+            $("#prevf").addClass("ripple");
+        }
+
+        // Disable next button on last page
+        if (index == images.length - 1) {
+            $("#nextf").prop("disabled", true);
+            $("#nextf").addClass("disabled-button");
+            $("#nextf").removeClass("ripple");   
+        } else {
+            $("#nextf").prop("disabled", false);
+            $("#nextf").removeClass("disabled-button");                        
+            $("#nextf").addClass("ripple");
+        }
+    }
+
+});

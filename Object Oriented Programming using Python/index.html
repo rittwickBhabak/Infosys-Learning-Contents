@@ -1,348 +1,431 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Object Oriented Programming using Python</title>
 </head>
 
-<body>
-    <ol>
-        <li>
-            <h2 class="chapter-title" id="chapter-1">OOP Introduction</h2>
-            <ol>
-                <li class="lesson-title"><a href="./1.1.html" target="_blank"> Introduction </a></li>
-                <li class="lesson-title"><a href="./1.2.html" target="_blank"> Online Purchase - A Scenario </a></li>
-                <li class="lesson-title"><a href="./1.3.html" target="_blank"> Changing Requirements - Try out </a></li>
-                <li class="lesson-title"><a href="./1.4.html" target="_blank"> Increasing Problems - Try out </a></li>
-                <li class="lesson-title"><a href="./1.5.html" target="_blank"> Modular Programming - The Problem Statement </a></li>
-                <li class="lesson-title"><a href="./1.6.html" target="_blank"> Modular Programming - The Solution </a></li>
-                <li class="lesson-title"><a href="./1.7.html" target="_blank"> Increasing Requirements </a></li>
-                <li class="lesson-title"><a href="./1.8.html" target="_blank"> Display Refund Amount - Solution 1 </a></li>
-                <li class="lesson-title"><a href="./1.9.html" target="_blank"> Display Refund Amount - Solution 2 </a></li>
-                <li class="lesson-title"><a href="./1.10.html" target="_blank"> Display Refund Amount - Solution 2 Complications </a></li>
-                <li class="lesson-title"><a href="./1.11.html" target="_blank"> OOP Introduction - Summary </a></li>
-            </ol>
-        </li>
-
-        <li>
-            <h2 class="chapter-title" id="chapter-2">OOP Basics</h2>
-            <ol>
-                <li class="lesson-title"><a href="./2.1.html" target="_blank"> OOP Approach </a></li>
-                <li class="lesson-title"><a href="./2.2.html" target="_blank"> Class & Object</a></li>
-                <li class="lesson-title"><a href="./2.3.html" target="_blank"> Constructor & self</a></li>
-                <li class="lesson-title"><a href="./2.4.html" target="_blank"> Reference Variable</a></li>
-                <li class="lesson-title"><a href="./2.5.html" target="_blank"> OOP Basics - Misc.</a></li>
-                <li class="lesson-title"><a href="./2.6.html" target="_blank"> Coding Standards </a></li>
-                <li class="lesson-title"><a href="./2.7.html" target="_blank"> OOP Basics - Summary </a></li>
-            </ol>
-        </li>
-
-        <li>
-            <h2 class="chapter-title" id="chapter-3">Abstraction & Encapsulation</h2>
-            <ol>
-                <li class="lesson-title"><a href="./3.1.html" target="_blank"> Abstraction </a></li>
-                <li class="lesson-title"><a href="./3.2.html" target="_blank"> Need for Encapsulation - Try out </a></li>
-                <li class="lesson-title"><a href="./3.3.html" target="_blank"> Public Data Access - Try out </a></li>
-                <li class="lesson-title"><a href="./3.4.html" target="_blank"> Private Data Access - Try out </a></li>
-                <li class="lesson-title"><a href="./3.5.html" target="_blank"> How does encapsulation work? - Try out </a></li>
-                <li class="lesson-title"><a href="./3.6.html" target="_blank"> Private Data Update - Caution ! </a></li>
-                <li class="lesson-title"><a href="./3.7.html" target="_blank"> Accessing Private Variables - Try out </a></li>
-                <li class="lesson-title"><a href="./3.8.html" target="_blank"> Encapsulation - Just a Caution Sign ! </a></li>
-                <li class="lesson-title"><a href="./3.9.html" target="_blank"> Getters & Setters - Try out </a></li>
-                <li class="lesson-title"><a href="./3.10.html" target="_blank"> Class Diagram </a></li>
-                <li class="lesson-title"><a href="./3.11.html" target="_blank"> Exercise on Access Specifiers - Level 1 </a></li>
-                <li class="lesson-title"><a href="./3.12.html" target="_blank"> Getters & Setters - Way to Code ! </a></li>
-                <li class="lesson-title"><a href="./3.13.html" target="_blank"> Abstraction & Encapsulation - Summary </a></li>
-                <li class="lesson-title"><a href="./3.14.html" target="_blank"> Abstraction & Encapsulation - Quiz </a></li>
-            </ol>
-        </li>
-
-        <li>
-            <h2 class="chapter-title" id="chapter-4">Assignment Set 1</h2>
-            <ol>
-                <li class="lesson-title"><a href="./4.1.html" target="_blank"> Assignment on Object Identification - Level 1 </a></li>
-                <li class="lesson-title"><a href="./4.2.html" target="_blank"> Assignment on Basic Class Design - Level 1 </a></li>
-                <li class="lesson-title"><a href="./4.3.html" target="_blank"> Assignment on Class Design - Level 1 </a></li>
-                <li class="lesson-title"><a href="./4.4.html" target="_blank"> Assignment on Class Implementation - Level 1 </a></li>
-                <li class="lesson-title"><a href="./4.5.html" target="_blank"> Assignment on Class Design - Level 2 </a></li>
-                <li class="lesson-title"><a href="./4.6.html" target="_blank"> Assignment on Class Implementation - Level 2 </a></li>
-                <li class="lesson-title"><a href="./4.7.html" target="_blank"> Assignment on Getter/Setter - Level 2 </a></li>
-                <li class="lesson-title"><a href="./4.8.html" target="_blank"> Assignment on Getter/Setter Contd. - Level 2 </a></li>
-            </ol>
-        </li>
-
-        <li>
-            <h2 class="chapter-title" id="chapter-5">Further Reading - Set 1</h2>
-            <ol>
-                <li class="lesson-title"><a href="./5.1.html" target="_blank"> Further Reading - Set 1 </a></li>
-            </ol>
-        </li>
-
-        <li>
-            <h2 class="chapter-title" id="chapter-6">Pass by Reference</h2>
-            <ol>
-                <li class="lesson-title"><a href="./6.1.html" target="_blank"> Pass by Reference - Try out </a></li>
-                <li class="lesson-title"><a href="./6.2.html" target="_blank"> Understanding Pass by Reference - Try out </a></li>
-                <li class="lesson-title"><a href="./6.3.html" target="_blank"> Pass By Reference - Quiz </a></li>
-            </ol>
-        </li>
-
-        <li>
-            <h2 class="chapter-title" id="chapter-7">Collection of Objects</h2>
-            <ol>
-                <li class="lesson-title"><a href="./7.1.html" target="_blank"> List of Objects - Try out </a></li>
-                <li class="lesson-title"><a href="./7.2.html" target="_blank"> Dictionary of Objects - Try out </a></li>
-                <li class="lesson-title"><a href="./7.3.html" target="_blank"> Dictionary of List of Objects - Try out </a></li>
-                <li class="lesson-title"><a href="./7.4.html" target="_blank"> Dictionary of List of Objects - Solution </a></li>
-            </ol>
-        </li>
-
-        <li>
-            <h2 class="chapter-title" id="chapter-8">Eclipse - Tips</h2>
-            <ol>
-                <li class="lesson-title"><a href="./8.1.html" target="_blank"> Tips </a></li>
-            </ol>
-        </li>
-
-        <li>
-            <h2 class="chapter-title" id="chapter-9">Static</h2>
-            <ol>
-                <li class="lesson-title"><a href="./9.1.html" target="_blank"> Mega Sale - A Scenario </a></li>
-                <li class="lesson-title"><a href="./9.2.html" target="_blank"> Need for Static Variables </a></li>
-                <li class="lesson-title"><a href="./9.3.html" target="_blank"> Static Variables - Introduction </a></li>
-                <li class="lesson-title"><a href="./9.4.html" target="_blank"> Accessing Static Variables - Try out </a></li>
-                <li class="lesson-title"><a href="./9.5.html" target="_blank"> Updating Static Variables - Try out </a></li>
-                <li class="lesson-title"><a href="./9.6.html" target="_blank"> Static vs Reference Variables </a></li>
-                <li class="lesson-title"><a href="./9.7.html" target="_blank"> Static Variables & Encapsulation - Try out </a></li>
-                <li class="lesson-title"><a href="./9.8.html" target="_blank"> Need for Static Methods - Try out </a></li>
-                <li class="lesson-title"><a href="./9.9.html" target="_blank"> Static Methods - Introduction </a></li>
-                <li class="lesson-title"><a href="./9.10.html" target="_blank"> Accessing Static Methods - Try out </a></li>
-                <li class="lesson-title"><a href="./9.11.html" target="_blank"> Mega Sale - The Complete Solution </a></li>
-                <li class="lesson-title"><a href="./9.12.html" target="_blank"> Static Counter - Try out </a></li>
-                <li class="lesson-title"><a href="./9.13.html" target="_blank"> Types of Variables - Quiz </a></li>
-                <li class="lesson-title"><a href="./9.14.html" target="_blank"> Static Variables & Methods - Quiz </a></li>
-                <li class="lesson-title"><a href="./9.15.html" target="_blank"> Static - Summary </a></li>
-                <li class="lesson-title"><a href="./9.16.html" target="_blank"> Exercise on Static Counter - Level 2 </a></li>
-            </ol>
-        </li>
-
-        <li>
-            <h2 class="chapter-title" id="chapter-10">Assignment Set 2</h2>
-            <ol>
-                <li class="lesson-title"><a href="./10.1.html" target="_blank"> Appendix: Static and Reference Variable - Try out </a>
-                </li>
-                <li class="lesson-title"><a href="./10.2.html" target="_blank"> Assignment on OOP Basics - Level 2 </a></li>
-                <li class="lesson-title"><a href="./10.3.html" target="_blank"> Assignment on List of Objects - Level 1 </a></li>
-                <li class="lesson-title"><a href="./10.4.html" target="_blank"> Assignment on OOP Basics & List - Level 2 </a></li>
-                <li class="lesson-title"><a href="./10.5.html" target="_blank"> Assignment on Static - Level 1 </a></li>
-            </ol>
-        </li>
-
-        <li>
-            <h2 class="chapter-title" id="chapter-11">Further Reading - Set 2</h2>
-            <ol>
-                <li class="lesson-title"><a href="./11.1.html" target="_blank"> Further Reading - Set 2 </a></li>
-            </ol>
-        </li>
-
-        <li>
-            <h2 class="chapter-title" id="chapter-12">Class Relationships</h2>
-            <ol>
-                <li class="lesson-title"><a href="./12.1.html" target="_blank"> Class Relationships - Introduction </a></li>
-                <li class="lesson-title"><a href="./12.2.html" target="_blank"> Aggregation - Introduction </a></li>
-                <li class="lesson-title"><a href="./12.3.html" target="_blank"> Aggregation - Independent Classes - Try out </a></li>
-                <li class="lesson-title"><a href="./12.4.html" target="_blank"> Aggregation - Connecting Classes </a></li>
-                <li class="lesson-title"><a href="./12.5.html" target="_blank"> Aggregation - Connecting classes - Try out </a></li>
-                <li class="lesson-title"><a href="./12.6.html" target="_blank"> Aggregation - Examples </a></li>
-                <li class="lesson-title"><a href="./12.7.html" target="_blank"> Aggregation - Activity </a></li>
-                <li class="lesson-title"><a href="./12.8.html" target="_blank"> Accessing Aggregated Attribute - Try out </a></li>
-                <li class="lesson-title"><a href="./12.9.html" target="_blank"> Aggregation & Encapsulation - Try out </a></li>
-                <li class="lesson-title"><a href="./12.10.html" target="_blank"> Aggregation & Getters/Setters - Try out </a></li>
-                <li class="lesson-title"><a href="./12.11.html" target="_blank"> Dependency via Formal Parameter - Try out </a></li>
-                <li class="lesson-title"><a href="./12.12.html" target="_blank"> Dependency via Local Object </a></li>
-                <li class="lesson-title"><a href="./12.13.html" target="_blank"> Aggregation & Dependency - Quiz </a></li>
-                <li class="lesson-title"><a href="./12.14.html" target="_blank"> Exercise on Class Diagram with Dependency - Level 2
-                    </a></li>
-                <li class="lesson-title"><a href="./12.15.html" target="_blank"> Fun with Python - Try out </a></li>
-            </ol>
-        </li>
-
-        <li>
-            <h2 class="chapter-title" id="chapter-13">Assignment Set 3</h2>
-            <ol>
-                <li class="lesson-title"><a href="./13.1.html" target="_blank"> Assignment on Class Design with Static Counter - Level 1
-                    </a></li>
-                <li class="lesson-title"><a href="./13.2.html" target="_blank"> Assignment on Static Counter - Level 1 </a></li>
-                <li class="lesson-title"><a href="./13.3.html" target="_blank"> Assignment on Dependency - Level 2 </a></li>
-                <li class="lesson-title"><a href="./13.4.html" target="_blank"> Assignment on Aggregation - Level 2 </a></li>
-                <li class="lesson-title"><a href="./13.5.html" target="_blank"> Assignment on Dependency & List Objects - Level 2 </a>
-                </li>
-                <li class="lesson-title"><a href="./13.6.html" target="_blank"> Assignment on Static Counter - Level 2 </a></li>
-                <li class="lesson-title"><a href="./13.7.html" target="_blank"> Assignment on Static - Level 2 </a></li>
-                <li class="lesson-title"><a href="./13.8.html" target="_blank"> Assignment on Dependency & Static - Level 2 </a></li>
-                <li class="lesson-title"><a href="./13.9.html" target="_blank"> Assignment on Static List - Level 3 </a></li>
-            </ol>
-        </li>
-
-        <li>
-            <h2 class="chapter-title" id="chapter-14">Further Reading - Set 3</h2>
-            <ol>
-                <li class="lesson-title"><a href="./14.1.html" target="_blank"> Further Reading - Set 3 </a></li>
-            </ol>
-        </li>
-
-        <li>
-            <h2 class="chapter-title" id="chapter-15">Inheritance</h2>
-            <ol>
-                <li class="lesson-title"><a href="./15.1.html" target="_blank"> Inheritance - Introduction </a></li>
-                <li class="lesson-title"><a href="./15.2.html" target="_blank"> Inheritance - Independent Classes - Try out </a></li>
-                <li class="lesson-title"><a href="./15.3.html" target="_blank"> Inheritance - Connecting Classes - Try out </a></li>
-                <li class="lesson-title"><a href="./15.4.html" target="_blank"> What gets inherited? </a></li>
-                <li class="lesson-title"><a href="./15.5.html" target="_blank"> Inheriting Constructor - Try out 1 </a></li>
-                <li class="lesson-title"><a href="./15.6.html" target="_blank"> Inheriting Constructor - Try out 2 </a></li>
-                <li class="lesson-title"><a href="./15.7.html" target="_blank"> Inheriting Attributes - Try out </a></li>
-                <li class="lesson-title"><a href="./15.8.html" target="_blank"> Inheriting Methods - Try out </a></li>
-                <li class="lesson-title"><a href="./15.9.html" target="_blank"> Method Overriding - Try out </a></li>
-                <li class="lesson-title"><a href="./15.10.html" target="_blank"> Inheritance - Quiz </a></li>
-                <li class="lesson-title"><a href="./15.11.html" target="_blank"> super() - Invoke Overridden Method - Try out </a></li>
-                <li class="lesson-title"><a href="./15.12.html" target="_blank"> super() - Invoke Constructor - Try out </a></li>
-                <li class="lesson-title"><a href="./15.13.html" target="_blank"> Inheritance - Summary </a></li>
-                <li class="lesson-title"><a href="./15.14.html" target="_blank"> super() - Quiz </a></li>
-                <li class="lesson-title"><a href="./15.15.html" target="_blank"> Exercise on Class Diagram with Inheritance - Level 1
-                    </a></li>
-                <li class="lesson-title"><a href="./15.16.html" target="_blank"> Exercise on Inheritance - Level 1 </a></li>
-                <li class="lesson-title"><a href="./15.17.html" target="_blank"> Exercise on Class Diagram with Inheritance - Level 2
-                    </a></li>
-                <li class="lesson-title"><a href="./15.18.html" target="_blank"> Inheritance - Types </a></li>
-                <li class="lesson-title"><a href="./15.19.html" target="_blank"> Single Level Inheritance - Try out </a></li>
-                <li class="lesson-title"><a href="./15.20.html" target="_blank"> Multi Level Inheritance - Try out </a></li>
-                <li class="lesson-title"><a href="./15.21.html" target="_blank"> Hierarchical Inheritance - Try out </a></li>
-                <li class="lesson-title"><a href="./15.22.html" target="_blank"> Multiple Inheritance - Try out </a></li>
-                <li class="lesson-title"><a href="./15.23.html" target="_blank"> Multiple Inheritance Contd. - Try out </a></li>
-                <li class="lesson-title"><a href="./15.24.html" target="_blank"> Inheritance Types - Quiz </a></li>
-            </ol>
-        </li>
-
-        <li>
-            <h2 class="chapter-title" id="chapter-16">Assignment Set 4</h2>
-            <ol>
-                <li class="lesson-title"><a href="./16.1.html" target="_blank"> Assignment on Class Diagram with Aggregation - Level 2
-                    </a></li>
-                <li class="lesson-title"><a href="./16.2.html" target="_blank"> Assignment on Class Diagram with Aggregation &
-                        Inheritance - Level 2 </a></li>
-                <li class="lesson-title"><a href="./16.3.html" target="_blank"> Assignment on Inheritance - Level 2 </a></li>
-                <li class="lesson-title"><a href="./16.4.html" target="_blank"> Assignment on Dependency & Aggregation - Level 3 </a>
-                </li>
-                <li class="lesson-title"><a href="./16.5.html" target="_blank"> Assignment on Static - Level 3 </a></li>
-            </ol>
-        </li>
-
-        <li>
-            <h2 class="chapter-title" id="chapter-17">Further Reading - Set 4</h2>
-            <ol>
-                <li class="lesson-title"><a href="./17.1.html" target="_blank"> Further Reading - Set 4 </a></li>
-            </ol>
-        </li>
-
-        <li>
-            <h2 class="chapter-title" id="chapter-18">Abstract</h2>
-            <ol>
-                <li class="lesson-title"><a href="./18.1.html" target="_blank"> Abstract Class - Introduction </a></li>
-                <li class="lesson-title"><a href="./18.2.html" target="_blank"> Abstract Method - A Scenario </a></li>
-                <li class="lesson-title"><a href="./18.3.html" target="_blank"> Need for Abstract Method - Scenario 1 </a></li>
-                <li class="lesson-title"><a href="./18.4.html" target="_blank"> Need for Abstract Method - Scenario 1 Contd. </a></li>
-                <li class="lesson-title"><a href="./18.5.html" target="_blank"> Need for Abstract Method - Scenario 2 </a></li>
-                <li class="lesson-title"><a href="./18.6.html" target="_blank"> Need for Abstract Method - Scenario 2 Contd. </a></li>
-                <li class="lesson-title"><a href="./18.7.html" target="_blank"> Declaring Abstract Method - Try out </a></li>
-                <li class="lesson-title"><a href="./18.8.html" target="_blank"> Instantiating Abstract Class - Try out </a></li>
-                <li class="lesson-title"><a href="./18.9.html" target="_blank"> Instantiating Abstract Subclass - Try out </a></li>
-                <li class="lesson-title"><a href="./18.10.html" target="_blank"> Need not override abstract method - Try out </a></li>
-                <li class="lesson-title"><a href="./18.11.html" target="_blank"> Abstract - Summary </a></li>
-                <li class="lesson-title"><a href="./18.12.html" target="_blank"> Abstract - Quiz </a></li>
-                <li class="lesson-title"><a href="./18.13.html" target="_blank"> Exercise on Abstract - Level 2 </a></li>
-            </ol>
-        </li>
-
-        <li>
-            <h2 class="chapter-title" id="chapter-19">Exception Handling</h2>
-            <ol>
-                <li class="lesson-title"><a href="./19.1.html" target="_blank"> Exception Handling - Introduction </a></li>
-                <li class="lesson-title"><a href="./19.2.html" target="_blank"> Raise In-built Exceptions </a></li>
-                <li class="lesson-title"><a href="./19.3.html" target="_blank"> Custom Exceptions </a></li>
-                <li class="lesson-title"><a href="./19.4.html" target="_blank"> Custom Exceptions - Order of except - Try out </a></li>
-                <li class="lesson-title"><a href="./19.5.html" target="_blank"> Custom Exceptions - Order of except - Explanation </a>
-                </li>
-                <li class="lesson-title"><a href="./19.6.html" target="_blank"> In-built Exceptions - Order of except - Try out </a>
-                </li>
-                <li class="lesson-title"><a href="./19.7.html" target="_blank"> In-built Exceptions - Order of except - Explanation </a>
-                </li>
-                <li class="lesson-title"><a href="./19.8.html" target="_blank"> Custom Exceptions - Quiz </a></li>
-                <li class="lesson-title"><a href="./19.9.html" target="_blank"> Fun with Python Braces - Try out </a></li>
-            </ol>
-        </li>
-
-        <li>
-            <h2 class="chapter-title" id="chapter-20">Assignment Set 5</h2>
-            <ol>
-                <li class="lesson-title"><a href="./20.1.html" target="_blank"> Assignment on Static - Level 3 </a></li>
-                <li class="lesson-title"><a href="./20.2.html" target="_blank"> Assignment on Aggregation & Inheritance - Level 3 </a>
-                </li>
-                <li class="lesson-title"><a href="./20.3.html" target="_blank"> Assignment on Class Diagram with Abstract - Level 1 </a>
-                </li>
-                <li class="lesson-title"><a href="./20.4.html" target="_blank"> Assignment on Abstract & Static - Level 2 </a></li>
-                <li class="lesson-title"><a href="./20.5.html" target="_blank"> Assignment on Abstract - Level 2 </a></li>
-                <li class="lesson-title"><a href="./20.6.html" target="_blank"> Assignment on Abstract - Level 3 </a></li>
-            </ol>
-        </li>
-
-        <li>
-            <h2 class="chapter-title" id="chapter-21">Further Reading - Set 5</h2>
-            <ol>
-                <li class="lesson-title"><a href="./21.1.html" target="_blank"> Further Reading - Set 5 </a></li>
-            </ol>
-        </li>
-
-        <li>
-            <h2 class="chapter-title" id="chapter-22">Common Mistakes</h2>
-            <ol>
-                <li class="lesson-title"><a href="./22.1.html" target="_blank"> Common Mistakes for OOP </a></li>
-            </ol>
-        </li>
-
-        <li>
-            <h2 class="chapter-title" id="chapter-23">Practice Problems</h2>
-            <ol>
-                <li class="lesson-title"><a href="./23.1.html" target="_blank"> Practice Problems - Level 1</a></li>
-                <li class="lesson-title"><a href="./23.2.html" target="_blank"> Practice Problems - Level 2</a></li>
-                <li class="lesson-title"><a href="./23.3.html" target="_blank"> Practice Problems - Level 3</a></li>
-                <li class="lesson-title"><a href="./23.4.html" target="_blank"> Assignment - Mock OOP Practice </a></li>
-            </ol>
-        </li>
-
-        <li>
-            <h2 class="chapter-title" id="chapter-24">Practice Quiz</h2>
-            <ol>
-                <li class="lesson-title"><a href="./24.1.html" target="_blank"> Practice Quiz </a></li>
-            </ol>
-        </li>
-
-        <li>
-            <h2 class="chapter-title" id="chapter-25">Programming Playground</h2>
-            <ol>
-                <li class="lesson-title"><a href="./25.1.html" target="_blank"> Start Playing </a></li>
-            </ol>
-        </li>
-
-        <li>
-            <h2 class="chapter-title" id="chapter-26">Reference Document</h2>
-            <ol>
-                <li class="lesson-title"><a href="./26.1.html" target="_blank"> Reference Document </a></li>
-            </ol>
-        </li>
-    </ol>
+<body class="mt-2 mb-5">
+    <div class="container">
+        <h2>Object Oriented Programming using Python</h2>
+        <ol>
+            <li><a href="./3325 Introduction.html" target="_blank">Introduction</a></li>
+            <li><a href="./3341 Online Purchase - A Scenario.html" target="_blank">Online Purchase - A Scenario</a></li>
+            <li><a href="./3357 Changing Requirements - Try out.html" target="_blank">Changing Requirements - Try
+                    out</a></li>
+            <li><a href="./3373 Increasing Problems - Try out.html" target="_blank">Increasing Problems - Try out</a>
+            </li>
+            <li><a href="./3389 Modular Programming - The Problem Statement.html" target="_blank">Modular Programming -
+                    The Problem Statement</a></li>
+            <li><a href="./3405 Modular Programming - The Solution.html" target="_blank">Modular Programming - The
+                    Solution</a></li>
+            <li><a href="./3421 Increasing Requirements.html" target="_blank">Increasing Requirements</a></li>
+            <li><a href="./3437 Display Refund Amount - Solution 1.html" target="_blank">Display Refund Amount -
+                    Solution 1</a></li>
+            <li><a href="./3453 Display Refund Amount - Solution 2.html" target="_blank">Display Refund Amount -
+                    Solution 2</a></li>
+            <li><a href="./3469 Display Refund Amount - Solution 2 Complications.html" target="_blank">Display Refund
+                    Amount - Solution 2 Complications</a></li>
+            <li><a href="./3485 OOP Introduction - Summary.html" target="_blank">OOP Introduction - Summary</a></li>
+            <li><a href="./3501 OOP Approach.html" target="_blank">OOP Approach</a></li>
+            <li><a href="./3517 OOP Approach.html" target="_blank">OOP Approach</a></li>
+            <li><a href="./3533 OOP Approach.html" target="_blank">OOP Approach</a></li>
+            <li><a href="./3549 Class & Object.html" target="_blank">Class & Object</a></li>
+            <li><a href="./3565 Class & Object.html" target="_blank">Class & Object</a></li>
+            <li><a href="./3581 Class & Object.html" target="_blank">Class & Object</a></li>
+            <li><a href="./3597 Class & Object.html" target="_blank">Class & Object</a></li>
+            <li><a href="./3613 Class & Object - Quiz.html" target="_blank">Class & Object - Quiz</a></li>
+            <li><a href="./3629 Class, Object & Reference Variable Creation.html" target="_blank">Class, Object &
+                    Reference Variable Creation</a></li>
+            <li><a href="./3645 Class, Object & Reference Variable Creation.html" target="_blank">Class, Object &
+                    Reference Variable Creation</a></li>
+            <li><a href="./3661 Class, Object & Reference Variable Creation.html" target="_blank">Class, Object &
+                    Reference Variable Creation</a></li>
+            <li><a href="./3677 Class, Object & Reference Variable Creation.html" target="_blank">Class, Object &
+                    Reference Variable Creation</a></li>
+            <li><a href="./3692 Look alike Object - Try out.html" target="_blank">Look alike Object - Try out</a></li>
+            <li><a href="./3708 Attributes of an Object - Try out.html" target="_blank">Attributes of an Object - Try
+                    out</a></li>
+            <li><a href="./3724 Accessing Attributes - Try out.html" target="_blank">Accessing Attributes - Try out</a>
+            </li>
+            <li><a href="./3740 Additional Attributes - Try out.html" target="_blank">Additional Attributes - Try
+                    out</a></li>
+            <li><a href="./3756 Assigning vs Updating - Try out.html" target="_blank">Assigning vs Updating - Try
+                    out</a></li>
+            <li><a href="./3772 Accessing a Non-Existing Attribute - Try out.html" target="_blank">Accessing a
+                    Non-Existing Attribute - Try out</a></li>
+            <li><a href="./3788 Variable vs Attribute.html" target="_blank">Variable vs Attribute</a></li>
+            <li><a href="./3804 Best Practice - Try out.html" target="_blank">Best Practice - Try out</a></li>
+            <li><a href="./3820 Best Practice Contd. - Try out.html" target="_blank">Best Practice Contd. - Try out</a>
+            </li>
+            <li><a href="./3836 Creating Common Attributes.html" target="_blank">Creating Common Attributes</a></li>
+            <li><a href="./3852 Creating Common Attributes.html" target="_blank">Creating Common Attributes</a></li>
+            <li><a href="./3868 Constructor & Self - Introduction.html" target="_blank">Constructor & Self -
+                    Introduction</a></li>
+            <li><a href="./3884 Constructor & Self - Introduction.html" target="_blank">Constructor & Self -
+                    Introduction</a></li>
+            <li><a href="./3900 Parameterless Constructor - Try out.html" target="_blank">Parameterless Constructor -
+                    Try out</a></li>
+            <li><a href="./3916 Parameterized Constructor - Try out.html" target="_blank">Parameterized Constructor -
+                    Try out</a></li>
+            <li><a href="./3932 Parameterless & Parameterized Constructor - Try out.html" target="_blank">Parameterless
+                    & Parameterized Constructor - Try out</a></li>
+            <li><a href="./3948 Attribute Creation Using self - Try out.html" target="_blank">Attribute Creation Using
+                    self - Try out</a></li>
+            <li><a href="./3964 Attribute vs Local Variable - Try out.html" target="_blank">Attribute vs Local Variable
+                    - Try out</a></li>
+            <li><a href="./3980 Creating Behaviors - Try out.html" target="_blank">Creating Behaviors - Try out</a></li>
+            <li><a href="./3996 Method Accessing Attributes - Try out.html" target="_blank">Method Accessing Attributes
+                    - Try out</a></li>
+            <li><a href="./4012 Invoking Methods - Try out.html" target="_blank">Invoking Methods - Try out</a></li>
+            <li><a href="./4028 Identify Invoking Object - Try out.html" target="_blank">Identify Invoking Object - Try
+                    out</a></li>
+            <li><a href="./4044 Deep Dive Into self & Methods.html" target="_blank">Deep Dive Into self & Methods</a>
+            </li>
+            <li><a href="./4060 Deep Dive Into self & Methods.html" target="_blank">Deep Dive Into self & Methods</a>
+            </li>
+            <li><a href="./4169 Constructor & self - Quiz.html" target="_blank">Constructor & self - Quiz</a></li>
+            <li><a href="./4206 Exercise on Class Design - Level 1.html" target="_blank">Exercise on Class Design -
+                    Level 1</a></li>
+            <li><a href="./4222 Need for References.html" target="_blank">Need for References</a></li>
+            <li><a href="./4238 Understanding References - Try out.html" target="_blank">Understanding References - Try
+                    out</a></li>
+            <li><a href="./4254 Object Without a Reference - Try out.html" target="_blank">Object Without a Reference -
+                    Try out</a></li>
+            <li><a href="./4270 Multiple References.html" target="_blank">Multiple References</a></li>
+            <li><a href="./4286 Multiple References - Try out.html" target="_blank">Multiple References - Try out</a>
+            </li>
+            <li><a href="./4302 Multiple References - Updating Object.html" target="_blank">Multiple References -
+                    Updating Object</a></li>
+            <li><a href="./4318 Multiple References - Updating Object - Try out.html" target="_blank">Multiple
+                    References - Updating Object - Try out</a></li>
+            <li><a href="./4334 Dereferencing & Assigning.html" target="_blank">Dereferencing & Assigning</a></li>
+            <li><a href="./4350 Dereferencing & Assigning - Try out.html" target="_blank">Dereferencing & Assigning -
+                    Try out</a></li>
+            <li><a href="./4366 Reference Variable - Summary.html" target="_blank">Reference Variable - Summary</a></li>
+            <li><a href="./4381 Reference Variable - Quiz.html" target="_blank">Reference Variable - Quiz</a></li>
+            <li><a href="./4397 Exercise on Class Design - Level 2.html" target="_blank">Exercise on Class Design -
+                    Level 2</a></li>
+            <li><a href="./4413 Exercise on Class Implementation - Level 2.html" target="_blank">Exercise on Class
+                    Implementation - Level 2</a></li>
+            <li><a href="./4429 Printing an Object - Try out.html" target="_blank">Printing an Object - Try out</a></li>
+            <li><a href="./4445 __str__ - Try out.html" target="_blank">__str__ - Try out</a></li>
+            <li><a href="./4461 Coding Standards.html" target="_blank">Coding Standards</a></li>
+            <li><a href="./4477 OOP Basics - Summary.html" target="_blank">OOP Basics - Summary</a></li>
+            <li><a href="./4493 Abstraction.html" target="_blank">Abstraction</a></li>
+            <li><a href="./4509 Need for Encapsulation - Try out.html" target="_blank">Need for Encapsulation - Try
+                    out</a></li>
+            <li><a href="./4525 Public Data Access - Try out.html" target="_blank">Public Data Access - Try out</a></li>
+            <li><a href="./4541 Private Data Access - Try out.html" target="_blank">Private Data Access - Try out</a>
+            </li>
+            <li><a href="./4557 How does encapsulation work_ - Try out.html" target="_blank">How does encapsulation
+                    work_ - Try out</a></li>
+            <li><a href="./4573 Private Data Update - Caution !.html" target="_blank">Private Data Update - Caution
+                    !</a></li>
+            <li><a href="./4589 Accessing Private Variables - Try out.html" target="_blank">Accessing Private Variables
+                    - Try out</a></li>
+            <li><a href="./4605 Encapsulation - Just a Caution Sign !.html" target="_blank">Encapsulation - Just a
+                    Caution Sign !</a></li>
+            <li><a href="./4621 Getters & Setters - Try out.html" target="_blank">Getters & Setters - Try out</a></li>
+            <li><a href="./4637 Class Diagram.html" target="_blank">Class Diagram</a></li>
+            <li><a href="./4653 Class Diagram.html" target="_blank">Class Diagram</a></li>
+            <li><a href="./4669 Exercise on Access Specifiers - Level 1.html" target="_blank">Exercise on Access
+                    Specifiers - Level 1</a></li>
+            <li><a href="./4685 Getters & Setters - Way to Code !.html" target="_blank">Getters & Setters - Way to Code
+                    !</a></li>
+            <li><a href="./4701 Abstraction & Encapsulation - Summary.html" target="_blank">Abstraction & Encapsulation
+                    - Summary</a></li>
+            <li><a href="./4717 Abstraction & Encapsulation - Quiz.html" target="_blank">Abstraction & Encapsulation -
+                    Quiz</a></li>
+            <li><a href="./4732 Assignment on Object Identification - Level 1.html" target="_blank">Assignment on Object
+                    Identification - Level 1</a></li>
+            <li><a href="./4748 Assignment on Basic Class Design - Level 1.html" target="_blank">Assignment on Basic
+                    Class Design - Level 1</a></li>
+            <li><a href="./4764 Assignment on Class Design - Level 1.html" target="_blank">Assignment on Class Design -
+                    Level 1</a></li>
+            <li><a href="./4780 Assignment on Class Implementation - Level 1.html" target="_blank">Assignment on Class
+                    Implementation - Level 1</a></li>
+            <li><a href="./4796 Assignment on Class Design - Level 2.html" target="_blank">Assignment on Class Design -
+                    Level 2</a></li>
+            <li><a href="./4812 Assignment on Class Implementation - Level 2.html" target="_blank">Assignment on Class
+                    Implementation - Level 2</a></li>
+            <li><a href="./4828 Assignment on Getter_Setter - Level 2.html" target="_blank">Assignment on Getter_Setter
+                    - Level 2</a></li>
+            <li><a href="./4844 Assignment on Getter_Setter Contd. - Level 2.html" target="_blank">Assignment on
+                    Getter_Setter Contd. - Level 2</a></li>
+            <li><a href="./4860 Further Reading - Set 1.html" target="_blank">Further Reading - Set 1</a></li>
+            <li><a href="./4876 Pass by Reference - Try out.html" target="_blank">Pass by Reference - Try out</a></li>
+            <li><a href="./4892 Understanding Pass by Reference - Try out.html" target="_blank">Understanding Pass by
+                    Reference - Try out</a></li>
+            <li><a href="./4908 Pass By Reference - Quiz.html" target="_blank">Pass By Reference - Quiz</a></li>
+            <li><a href="./4924 List of Objects - Try out.html" target="_blank">List of Objects - Try out</a></li>
+            <li><a href="./4940 Dictionary of Objects - Try out.html" target="_blank">Dictionary of Objects - Try
+                    out</a></li>
+            <li><a href="./4956 Dictionary of List of Objects - Try out.html" target="_blank">Dictionary of List of
+                    Objects - Try out</a></li>
+            <li><a href="./4972 Dictionary of List of Objects - Solution.html" target="_blank">Dictionary of List of
+                    Objects - Solution</a></li>
+            <li><a href="./4988 Tips.html" target="_blank">Tips</a></li>
+            <li><a href="./5004 Mega Sale - A Scenario.html" target="_blank">Mega Sale - A Scenario</a></li>
+            <li><a href="./5020 Need for Static Variables.html" target="_blank">Need for Static Variables</a></li>
+            <li><a href="./5036 Need for Static Variables.html" target="_blank">Need for Static Variables</a></li>
+            <li><a href="./5052 Static Variables - Introduction.html" target="_blank">Static Variables -
+                    Introduction</a></li>
+            <li><a href="./5068 Accessing Static Variables - Try out.html" target="_blank">Accessing Static Variables -
+                    Try out</a></li>
+            <li><a href="./5084 Updating Static Variables - Try out.html" target="_blank">Updating Static Variables -
+                    Try out</a></li>
+            <li><a href="./5100 Static vs Reference Variables.html" target="_blank">Static vs Reference Variables</a>
+            </li>
+            <li><a href="./5115 Static Variables & Encapsulation - Try out.html" target="_blank">Static Variables &
+                    Encapsulation - Try out</a></li>
+            <li><a href="./5131 Need for Static Methods - Try out.html" target="_blank">Need for Static Methods - Try
+                    out</a></li>
+            <li><a href="./5147 Static Methods - Introduction.html" target="_blank">Static Methods - Introduction</a>
+            </li>
+            <li><a href="./5163 Accessing Static Methods - Try out.html" target="_blank">Accessing Static Methods - Try
+                    out</a></li>
+            <li><a href="./5179 Mega Sale - The Complete Solution.html" target="_blank">Mega Sale - The Complete
+                    Solution</a></li>
+            <li><a href="./5195 Static Counter - Try out.html" target="_blank">Static Counter - Try out</a></li>
+            <li><a href="./5211 Types of Variables - Quiz.html" target="_blank">Types of Variables - Quiz</a></li>
+            <li><a href="./5227 Static Variables & Methods - Quiz.html" target="_blank">Static Variables & Methods -
+                    Quiz</a></li>
+            <li><a href="./5243 Static - Summary.html" target="_blank">Static - Summary</a></li>
+            <li><a href="./5259 Exercise on Static Counter - Level 2.html" target="_blank">Exercise on Static Counter -
+                    Level 2</a></li>
+            <li><a href="./5275 Appendix_ Static and Reference Variable - Try out.html" target="_blank">Appendix_ Static
+                    and Reference Variable - Try out</a></li>
+            <li><a href="./5291 Assignment on OOP Basics - Level 2.html" target="_blank">Assignment on OOP Basics -
+                    Level 2</a></li>
+            <li><a href="./5307 Assignment on List of Objects - Level 1.html" target="_blank">Assignment on List of
+                    Objects - Level 1</a></li>
+            <li><a href="./5323 Assignment on OOP Basics & List - Level 2.html" target="_blank">Assignment on OOP Basics
+                    & List - Level 2</a></li>
+            <li><a href="./5339 Assignment on Static - Level 1.html" target="_blank">Assignment on Static - Level 1</a>
+            </li>
+            <li><a href="./5355 Further Reading - Set 2.html" target="_blank">Further Reading - Set 2</a></li>
+            <li><a href="./5371 Class Relationships - Introduction.html" target="_blank">Class Relationships -
+                    Introduction</a></li>
+            <li><a href="./5387 Class Relationships - Introduction.html" target="_blank">Class Relationships -
+                    Introduction</a></li>
+            <li><a href="./5403 Class Relationships - Introduction.html" target="_blank">Class Relationships -
+                    Introduction</a></li>
+            <li><a href="./5419 Class Relationships - Introduction.html" target="_blank">Class Relationships -
+                    Introduction</a></li>
+            <li><a href="./5435 Class Relationships - Introduction.html" target="_blank">Class Relationships -
+                    Introduction</a></li>
+            <li><a href="./5451 Class Relationships - Introduction.html" target="_blank">Class Relationships -
+                    Introduction</a></li>
+            <li><a href="./5467 Class Relationships - Introduction.html" target="_blank">Class Relationships -
+                    Introduction</a></li>
+            <li><a href="./5483 Aggregation - Introduction.html" target="_blank">Aggregation - Introduction</a></li>
+            <li><a href="./5498 Aggregation - Independent Classes - Try out.html" target="_blank">Aggregation -
+                    Independent Classes - Try out</a></li>
+            <li><a href="./5514 Aggregation - Connecting Classes.html" target="_blank">Aggregation - Connecting
+                    Classes</a></li>
+            <li><a href="./5530 Aggregation - Connecting classes - Try out.html" target="_blank">Aggregation -
+                    Connecting classes - Try out</a></li>
+            <li><a href="./5546 Aggregation - Examples.html" target="_blank">Aggregation - Examples</a></li>
+            <li><a href="./5562 Aggregation - Examples.html" target="_blank">Aggregation - Examples</a></li>
+            <li><a href="./5578 Aggregation - Examples.html" target="_blank">Aggregation - Examples</a></li>
+            <li><a href="./5594 Aggregation - Activity.html" target="_blank">Aggregation - Activity</a></li>
+            <li><a href="./5610 Accessing Aggregated Attribute - Try out.html" target="_blank">Accessing Aggregated
+                    Attribute - Try out</a></li>
+            <li><a href="./5626 Aggregation & Encapsulation - Try out.html" target="_blank">Aggregation & Encapsulation
+                    - Try out</a></li>
+            <li><a href="./5642 Aggregation & Getters_Setters - Try out.html" target="_blank">Aggregation &
+                    Getters_Setters - Try out</a></li>
+            <li><a href="./5658 Dependency via Formal Parameter - Try out.html" target="_blank">Dependency via Formal
+                    Parameter - Try out</a></li>
+            <li><a href="./5674 Dependency via Local Object.html" target="_blank">Dependency via Local Object</a></li>
+            <li><a href="./5690 Aggregation & Dependency - Quiz.html" target="_blank">Aggregation & Dependency -
+                    Quiz</a></li>
+            <li><a href="./5706 Exercise on Class Diagram with Dependency - Level 2.html" target="_blank">Exercise on
+                    Class Diagram with Dependency - Level 2</a></li>
+            <li><a href="./5722 Fun with Python - Try out.html" target="_blank">Fun with Python - Try out</a></li>
+            <li><a href="./5738 Assignment on Class Design with Static Counter - Level 1.html"
+                    target="_blank">Assignment on Class Design with Static Counter - Level 1</a></li>
+            <li><a href="./5754 Assignment on Static Counter - Level 1.html" target="_blank">Assignment on Static
+                    Counter - Level 1</a></li>
+            <li><a href="./5770 Assignment on Dependency - Level 2.html" target="_blank">Assignment on Dependency -
+                    Level 2</a></li>
+            <li><a href="./5786 Assignment on Aggregation - Level 2.html" target="_blank">Assignment on Aggregation -
+                    Level 2</a></li>
+            <li><a href="./5802 Assignment on Dependency & List Objects - Level 2.html" target="_blank">Assignment on
+                    Dependency & List Objects - Level 2</a></li>
+            <li><a href="./5818 Assignment on Static Counter - Level 2.html" target="_blank">Assignment on Static
+                    Counter - Level 2</a></li>
+            <li><a href="./5834 Assignment on Static - Level 2.html" target="_blank">Assignment on Static - Level 2</a>
+            </li>
+            <li><a href="./5850 Assignment on Dependency & Static - Level 2.html" target="_blank">Assignment on
+                    Dependency & Static - Level 2</a></li>
+            <li><a href="./5865 Assignment on Static List - Level 3.html" target="_blank">Assignment on Static List -
+                    Level 3</a></li>
+            <li><a href="./5881 Further Reading - Set 3.html" target="_blank">Further Reading - Set 3</a></li>
+            <li><a href="./5897 Inheritance - Introduction.html" target="_blank">Inheritance - Introduction</a></li>
+            <li><a href="./5913 Inheritance - Introduction.html" target="_blank">Inheritance - Introduction</a></li>
+            <li><a href="./5929 Inheritance - Introduction.html" target="_blank">Inheritance - Introduction</a></li>
+            <li><a href="./5945 Inheritance - Introduction.html" target="_blank">Inheritance - Introduction</a></li>
+            <li><a href="./5961 Inheritance - Introduction.html" target="_blank">Inheritance - Introduction</a></li>
+            <li><a href="./5977 Inheritance - Introduction.html" target="_blank">Inheritance - Introduction</a></li>
+            <li><a href="./5993 Inheritance - Independent Classes - Try out.html" target="_blank">Inheritance -
+                    Independent Classes - Try out</a></li>
+            <li><a href="./6009 Inheritance - Connecting Classes - Try out.html" target="_blank">Inheritance -
+                    Connecting Classes - Try out</a></li>
+            <li><a href="./6025 What gets inherited_.html" target="_blank">What gets inherited_</a></li>
+            <li><a href="./6041 Inheriting Constructor - Try out 1.html" target="_blank">Inheriting Constructor - Try
+                    out 1</a></li>
+            <li><a href="./6057 Inheriting Constructor - Try out 2.html" target="_blank">Inheriting Constructor - Try
+                    out 2</a></li>
+            <li><a href="./6073 Inheriting Attributes - Try out.html" target="_blank">Inheriting Attributes - Try
+                    out</a></li>
+            <li><a href="./6089 Inheriting Methods - Try out.html" target="_blank">Inheriting Methods - Try out</a></li>
+            <li><a href="./6105 Method Overriding - Try out.html" target="_blank">Method Overriding - Try out</a></li>
+            <li><a href="./6121 Inheritance - Quiz.html" target="_blank">Inheritance - Quiz</a></li>
+            <li><a href="./6137 super() - Invoke Overridden Method - Try out.html" target="_blank">super() - Invoke
+                    Overridden Method - Try out</a></li>
+            <li><a href="./6153 super() - Invoke Constructor - Try out.html" target="_blank">super() - Invoke
+                    Constructor - Try out</a></li>
+            <li><a href="./6169 Inheritance - Summary.html" target="_blank">Inheritance - Summary</a></li>
+            <li><a href="./6185 super() - Quiz.html" target="_blank">super() - Quiz</a></li>
+            <li><a href="./6201 Exercise on Class Diagram with Inheritance - Level 1.html" target="_blank">Exercise on
+                    Class Diagram with Inheritance - Level 1</a></li>
+            <li><a href="./6216 Exercise on Inheritance - Level 1.html" target="_blank">Exercise on Inheritance - Level
+                    1</a></li>
+            <li><a href="./6232 Exercise on Class Diagram with Inheritance - Level 2.html" target="_blank">Exercise on
+                    Class Diagram with Inheritance - Level 2</a></li>
+            <li><a href="./6248 Inheritance - Types.html" target="_blank">Inheritance - Types</a></li>
+            <li><a href="./6264 Single Level Inheritance - Try out.html" target="_blank">Single Level Inheritance - Try
+                    out</a></li>
+            <li><a href="./6280 Multi Level Inheritance - Try out.html" target="_blank">Multi Level Inheritance - Try
+                    out</a></li>
+            <li><a href="./6296 Hierarchical Inheritance - Try out.html" target="_blank">Hierarchical Inheritance - Try
+                    out</a></li>
+            <li><a href="./6312 Multiple Inheritance - Try out.html" target="_blank">Multiple Inheritance - Try out</a>
+            </li>
+            <li><a href="./6328 Multiple Inheritance Contd. - Try out.html" target="_blank">Multiple Inheritance Contd.
+                    - Try out</a></li>
+            <li><a href="./6344 Inheritance Types - Quiz.html" target="_blank">Inheritance Types - Quiz</a></li>
+            <li><a href="./6360 Assignment on Class Diagram with Aggregation - Level 2.html" target="_blank">Assignment
+                    on Class Diagram with Aggregation - Level 2</a></li>
+            <li><a href="./6376 Assignment on Class Diagram with Aggregation & Inheritance - Level 2.html"
+                    target="_blank">Assignment on Class Diagram with Aggregation & Inheritance - Level 2</a></li>
+            <li><a href="./6392 Assignment on Inheritance - Level 2.html" target="_blank">Assignment on Inheritance -
+                    Level 2</a></li>
+            <li><a href="./6408 Assignment on Dependency & Aggregation - Level 3.html" target="_blank">Assignment on
+                    Dependency & Aggregation - Level 3</a></li>
+            <li><a href="./6424 Assignment on Static - Level 3.html" target="_blank">Assignment on Static - Level 3</a>
+            </li>
+            <li><a href="./6440 Further Reading - Set 4.html" target="_blank">Further Reading - Set 4</a></li>
+            <li><a href="./6456 Abstract Class - Introduction.html" target="_blank">Abstract Class - Introduction</a>
+            </li>
+            <li><a href="./6472 Abstract Class - Introduction.html" target="_blank">Abstract Class - Introduction</a>
+            </li>
+            <li><a href="./6488 Abstract Class - Introduction.html" target="_blank">Abstract Class - Introduction</a>
+            </li>
+            <li><a href="./6504 Abstract Class - Introduction.html" target="_blank">Abstract Class - Introduction</a>
+            </li>
+            <li><a href="./6520 Abstract Method - A Scenario.html" target="_blank">Abstract Method - A Scenario</a></li>
+            <li><a href="./6536 Need for Abstract Method - Scenario 1.html" target="_blank">Need for Abstract Method -
+                    Scenario 1</a></li>
+            <li><a href="./6552 Need for Abstract Method - Scenario 1 Contd..html" target="_blank">Need for Abstract
+                    Method - Scenario 1 Contd.</a></li>
+            <li><a href="./6568 Need for Abstract Method - Scenario 2.html" target="_blank">Need for Abstract Method -
+                    Scenario 2</a></li>
+            <li><a href="./6583 Need for Abstract Method - Scenario 2.html" target="_blank">Need for Abstract Method -
+                    Scenario 2</a></li>
+            <li><a href="./6599 Need for Abstract Method - Scenario 2 Contd..html" target="_blank">Need for Abstract
+                    Method - Scenario 2 Contd.</a></li>
+            <li><a href="./6615 Declaring Abstract Method - Try out.html" target="_blank">Declaring Abstract Method -
+                    Try out</a></li>
+            <li><a href="./6631 Instantiating Abstract Class - Try out.html" target="_blank">Instantiating Abstract
+                    Class - Try out</a></li>
+            <li><a href="./6647 Instantiating Abstract Subclass - Try out.html" target="_blank">Instantiating Abstract
+                    Subclass - Try out</a></li>
+            <li><a href="./6663 Need not override abstract method - Try out.html" target="_blank">Need not override
+                    abstract method - Try out</a></li>
+            <li><a href="./6679 Abstract - Summary.html" target="_blank">Abstract - Summary</a></li>
+            <li><a href="./6695 Abstract - Quiz.html" target="_blank">Abstract - Quiz</a></li>
+            <li><a href="./6711 Exercise on Abstract - Level 2.html" target="_blank">Exercise on Abstract - Level 2</a>
+            </li>
+            <li><a href="./6727 Exception Handling - Introduction.html" target="_blank">Exception Handling -
+                    Introduction</a></li>
+            <li><a href="./6743 Raise In-built Exceptions.html" target="_blank">Raise In-built Exceptions</a></li>
+            <li><a href="./6759 Raise In-built Exceptions.html" target="_blank">Raise In-built Exceptions</a></li>
+            <li><a href="./6775 Raise In-built Exceptions.html" target="_blank">Raise In-built Exceptions</a></li>
+            <li><a href="./6791 Raise In-built Exceptions.html" target="_blank">Raise In-built Exceptions</a></li>
+            <li><a href="./6807 Custom Exceptions.html" target="_blank">Custom Exceptions</a></li>
+            <li><a href="./6823 Custom Exceptions.html" target="_blank">Custom Exceptions</a></li>
+            <li><a href="./6839 Custom Exceptions - Order of except - Try out.html" target="_blank">Custom Exceptions -
+                    Order of except - Try out</a></li>
+            <li><a href="./6855 Custom Exceptions - Order of except - Explanation.html" target="_blank">Custom
+                    Exceptions - Order of except - Explanation</a></li>
+            <li><a href="./6871 In-built Exceptions - Order of except - Try out.html" target="_blank">In-built
+                    Exceptions - Order of except - Try out</a></li>
+            <li><a href="./6887 In-built Exceptions - Order of except - Explanation.html" target="_blank">In-built
+                    Exceptions - Order of except - Explanation</a></li>
+            <li><a href="./6903 Custom Exceptions - Quiz.html" target="_blank">Custom Exceptions - Quiz</a></li>
+            <li><a href="./6919 Fun with Python Braces - Try out.html" target="_blank">Fun with Python Braces - Try
+                    out</a></li>
+            <li><a href="./6935 Assignment on Static - Level 3.html" target="_blank">Assignment on Static - Level 3</a>
+            </li>
+            <li><a href="./6951 Assignment on Aggregation & Inheritance - Level 3.html" target="_blank">Assignment on
+                    Aggregation & Inheritance - Level 3</a></li>
+            <li><a href="./6967 Assignment on Class Diagram with Abstract - Level 1.html" target="_blank">Assignment on
+                    Class Diagram with Abstract - Level 1</a></li>
+            <li><a href="./6983 Assignment on Abstract & Static - Level 2.html" target="_blank">Assignment on Abstract &
+                    Static - Level 2</a></li>
+            <li><a href="./6998 Assignment on Abstract - Level 2.html" target="_blank">Assignment on Abstract - Level
+                    2</a></li>
+            <li><a href="./7014 Assignment on Abstract - Level 3.html" target="_blank">Assignment on Abstract - Level
+                    3</a></li>
+            <li><a href="./7030 Further Reading - Set 5.html" target="_blank">Further Reading - Set 5</a></li>
+            <li><a href="./7046 Common Mistakes for OOP.html" target="_blank">Common Mistakes for OOP</a></li>
+            <li><a href="./7062 Common Mistakes for OOP.html" target="_blank">Common Mistakes for OOP</a></li>
+            <li><a href="./7078 Common Mistakes for OOP.html" target="_blank">Common Mistakes for OOP</a></li>
+            <li><a href="./7094 Common Mistakes for OOP.html" target="_blank">Common Mistakes for OOP</a></li>
+            <li><a href="./7110 Common Mistakes for OOP.html" target="_blank">Common Mistakes for OOP</a></li>
+            <li><a href="./7126 Common Mistakes for OOP.html" target="_blank">Common Mistakes for OOP</a></li>
+            <li><a href="./7142 Common Mistakes for OOP.html" target="_blank">Common Mistakes for OOP</a></li>
+            <li><a href="./7158 Common Mistakes for OOP.html" target="_blank">Common Mistakes for OOP</a></li>
+            <li><a href="./7174 Common Mistakes for OOP.html" target="_blank">Common Mistakes for OOP</a></li>
+            <li><a href="./7190 Common Mistakes for OOP.html" target="_blank">Common Mistakes for OOP</a></li>
+            <li><a href="./7206 Common Mistakes for OOP.html" target="_blank">Common Mistakes for OOP</a></li>
+            <li><a href="./7222 Common Mistakes for OOP.html" target="_blank">Common Mistakes for OOP</a></li>
+            <li><a href="./7238 Practice Problem 1.html" target="_blank">Practice Problem 1</a></li>
+            <li><a href="./7254 Practice Problem 2.html" target="_blank">Practice Problem 2</a></li>
+            <li><a href="./7270 Practice Problem 4.html" target="_blank">Practice Problem 4</a></li>
+            <li><a href="./7286 Practice Problem - 5.html" target="_blank">Practice Problem - 5</a></li>
+            <li><a href="./7302 Practice Problem - 10.html" target="_blank">Practice Problem - 10</a></li>
+            <li><a href="./7318 Practice Problem 7.html" target="_blank">Practice Problem 7</a></li>
+            <li><a href="./7334 Practice Problem 8.html" target="_blank">Practice Problem 8</a></li>
+            <li><a href="./7350 Practice Problem 9.html" target="_blank">Practice Problem 9</a></li>
+            <li><a href="./7366 Practice Problem 11.html" target="_blank">Practice Problem 11</a></li>
+            <li><a href="./7382 Practice Problem 12.html" target="_blank">Practice Problem 12</a></li>
+            <li><a href="./7398 Practice Problem 13.html" target="_blank">Practice Problem 13</a></li>
+            <li><a href="./7414 Practice Problem 15.html" target="_blank">Practice Problem 15</a></li>
+            <li><a href="./7429 Practice Problem 14.html" target="_blank">Practice Problem 14</a></li>
+            <li><a href="./7445 Assignment - Mock OOP Practice.html" target="_blank">Assignment - Mock OOP Practice</a>
+            </li>
+            <li><a href="./7461 Practice Quiz.html" target="_blank">Practice Quiz</a></li>
+            <li><a href="./7477 Start Playing.html" target="_blank">Start Playing</a></li>
+            <li><a href="./7493 Reference Document.html" target="_blank">Reference Document</a></li>
+            <li><a href="./7509 Assessment - Object Oriented Programming Using Python.html" target="_blank">Assessment -
+                    Object Oriented Programming Using Python</a></li>
+        </ol>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

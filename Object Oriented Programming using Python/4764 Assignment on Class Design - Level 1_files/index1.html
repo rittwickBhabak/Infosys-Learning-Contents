@@ -1,0 +1,358 @@
+
+<!-- saved from url=(0139)https://infytq.onwingspan.com/common-content-store/Shared/Shared/Public/lex_auth_012737499808112640838_shared/web-hosted/assets/index1.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link href="./normalize.min.css" rel="stylesheet"><link href="./css" rel="stylesheet"><link href="./web-module.css" rel="stylesheet"><link href="./sunburst.css" rel="stylesheet"><script type="text/javascript" src="./prettify.js.download"></script><script type="text/javascript">
+     document.body.classList.add('app-background', 'indigo', 'custom-scroll-small');
+        for(var i=0; i < document.querySelectorAll("[style]").length; i = i + 1 ) {
+            document.querySelectorAll("[style]")[i].setAttribute('style', null);
+          }
+          for(var i=0; i < document.querySelectorAll("pre").length; i = i + 1 ) {
+            document.querySelectorAll("pre")[i].classList.add('prettyprint');
+            document.querySelectorAll("pre")[i].setAttribute("id", "codepane"+i);
+            document.querySelectorAll("pre")[i].classList.add('prettyprint');
+            var btn = document.createElement("BUTTON");
+            btn.innerHTML = "<img src='/assets/common/plugins/web-module/copyButtonImage.svg'/>";
+            var newParam = "codepane"+i;
+            var nParam = "copyButton"+i;
+            btn.setAttribute("id", nParam);
+            btn.setAttribute("class", "transparent-button")
+            btn.style.float = "right";
+            btn.style.color = "white";
+            btn.setAttribute("onclick", "copyToClipBoardFunction("+newParam+","+nParam+")");
+            document.querySelectorAll("pre")[i].appendChild(btn)
+          }
+          for(var i=0; i < document.querySelectorAll(".prettyprint").length; i = i + 1 ) {
+            document.querySelectorAll(".prettyprint")[i].classList.add('linenums:1');
+          }
+          function copyToClipBoardFunction(param, nParam) {
+            nParam.innerText = "Copied!";
+            nParam.setAttribute("class","button-of-material disabled-button");
+            const id = 'mycustom-clipboard-textarea-hidden-id';
+            let existsTextarea = document.getElementById(id);
+            if (!existsTextarea) {
+              const textarea = document.createElement('textarea');
+              textarea.id = id;
+              // Place in top-left corner of screen regardless of scroll position.
+              textarea.style.position = 'fixed';
+              textarea.style.top = '0px';
+              textarea.style.left = '0px';
+              // Ensure it has a small width and height. Setting to 1px / 1em
+              // doesn't work as this gives a negative w/h on some browsers.
+              textarea.style.width = '1px';
+              textarea.style.height = '1px';
+              // We don't need padding, reducing the size if it does flash render.
+              textarea.style.padding = '0px';
+              // Clean up any borders.
+              textarea.style.border = 'none';
+              textarea.style.outline = 'none';
+              textarea.style.boxShadow = 'none';
+              // Avoid flash of white box if rendered for any reason.
+              textarea.style.background = 'transparent';
+              document.querySelector('body').appendChild(textarea);
+              existsTextarea = document.getElementById(id);
+            } else {
+            }
+            existsTextarea.value = param.innerText.slice(0,param.innerText.length-7);
+            existsTextarea.select();
+            try {
+              const status = document.execCommand('copy');
+              if (!status) {
+                logger.error('Cannot copy text');
+              } else {
+                const tooltip = document.getElementById('myTooltip');
+                tooltip.innerHTML = 'Code Copied!';
+              }
+            } catch (err) {
+            }
+            setTimeout(
+              function() {
+                nParam.innerHTML = "<img src='/assets/common/plugins/web-module/copyButtonImage.svg'/>";
+                nParam.setAttribute("class","transparent-button");
+              }, 1000);
+          }</script><style>
+          .transparent-button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+          }
+          .transparent-button:focus {
+            outline: none;
+          }
+          .button-of-material {
+          background-color: #3f51b5;
+          color: #fff !important;
+          box-sizing: border-box;
+          position: relative;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          cursor: pointer;
+          outline: 0;
+          border: none;
+          -webkit-tap-highlight-color: transparent;
+          display: inline-block;
+          white-space: nowrap;
+          text-decoration: none;
+          vertical-align: baseline;
+          text-align: center;
+          margin: 0;
+          line-height: 32px;
+          padding: 0 8px;
+          border-radius: 4px;
+          overflow: visible;
+          transform: translate3d(0, 0, 0);
+          transition: background .4s cubic-bezier(.25, .8, .25, 1), box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+          font-family: Roboto, "Helvetica Neue", sans-serif;
+          font-size: 14px;
+          font-weight: 300;
+      }
+
+      .disabled-button {
+          color: black !important;
+          background-color: white;
+      }
+
+      .ripple {
+          background-position: center;
+          transition: background 0.8s;
+      }
+
+      .ripple:hover {
+          background: #2f41a5 radial-gradient(circle, transparent 1%, #2f41a5 1%) center/15000%;
+      }
+
+      .ripple:active {
+          background-color: #5f7fdf;
+          background-size: 100%;
+          transition: background 0s;
+      }</style></head><body class="app-background indigo custom-scroll-small" style="font-size: 20px; background-color: rgb(250, 250, 250); color: rgb(0, 0, 0);">
+
+
+
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OOPR</title>
+    <script src="./jquery-1.8.3.min.js.download"></script>
+    <script type="text/javascript" src="./jquery-ui.min.js.download"></script>
+    <script type="text/javascript" src="./jquery.ui.touch-punch.min.js.download"></script>
+    <style type="text/css">
+        body {
+            line-height: 1.5em;
+        }
+
+        div #text {
+            border: 2px solid;
+            /*border-radius: 25px;*/
+        }
+
+        #content {
+            margin: 10px 25px;
+            text-align: center;
+            user-select: none;
+        }
+
+
+        #qtnMagnets,
+        .ansMagnets {
+            background: rgba(214, 214, 214, 1.00);
+        }
+
+        #qtnMagnets {
+            margin: 0 auto;
+            background: rgba(214, 214, 214, 1.00);
+        }
+
+        #qtnMagnets,
+        .ansMagnets {
+            list-style-type: none;
+            margin: 0;
+            float: left;
+            width: 100%;
+            padding: 10px !important;
+            min-height: 60px;
+            margin-right: 10px !important;
+            padding-top: 0px !important;
+            border: 2px solid #333;
+            border-radius: 10px;
+            box-shadow: 0 0 .3em rgba(0, 0, 0, .8);
+        }
+
+        #qtnMagnets li,
+        .ansMagnets li {
+            font-size: 15px;
+            padding: 2px;
+            border: 2px solid #333;
+            border-radius: 5px;
+            background: #fff;
+            width: 100%;
+            z-index: 1 !important;
+            margin: 0;
+        }
+
+        #qtnMagnets li {
+            background: #666;
+            color: #fff;
+            text-shadow: 0 0 3px #000;
+        }
+
+        .text-danger {
+            color: #E44061 !important;
+            font-weight: normal !important;
+        }
+
+        .text-success {
+            color: #3c763d !important;
+            font-weight: normal !important;
+        }
+
+        .margin-left-20 {
+            margin-left: 20px;
+        }
+
+        .two-div {
+            width: 45%;
+            padding: 2%;
+            min-width: 250px;
+        }
+
+        .line-height-200 {
+            line-height: 200%;
+        }
+
+        .flex-space-around {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .min-height-400 {
+            min-height: 400px;
+        }
+
+        .activity-timer {
+            font-size: 0.9em;
+            float: right;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .button-of-material {
+            background-color: #3f51b5;
+            color: #fff;
+            box-sizing: border-box;
+            position: relative;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            cursor: pointer;
+            outline: 0;
+            border: none;
+            -webkit-tap-highlight-color: transparent;
+            display: inline-block;
+            white-space: nowrap;
+            text-decoration: none;
+            vertical-align: baseline;
+            text-align: center;
+            margin: 0;
+            min-width: 64px;
+            line-height: 36px;
+            padding: 0 16px;
+            border-radius: 4px;
+            overflow: visible;
+            transform: translate3d(0, 0, 0);
+            transition: background .4s cubic-bezier(.25, .8, .25, 1), box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+            font-family: Roboto, "Helvetica Neue", sans-serif;
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        .disabled-button {
+            color: rgba(0, 0, 0, .26);
+            background-color: rgba(0, 0, 0, .12);
+        }
+
+        .ripple {
+            background-position: center;
+            transition: background 0.8s;
+        }
+
+        .ripple:hover {
+            background: #2f41a5 radial-gradient(circle, transparent 1%, #2f41a5 1%) center/15000%;
+        }
+
+        .ripple:active {
+            background-color: #5f7fdf;
+            background-size: 100%;
+            transition: background 0s;
+        }
+
+        .margin-left-m {
+            margin-left: 16px !important;
+        }
+    </style>
+
+
+
+
+
+    <div class="gridContainer clearfix">
+        <div id="part1" class="tab-pane active">
+            <b>Assignment: <span class="activity-timer">30 mins</span></b>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="line-height-200">
+                        WeCare insurance company wants to calculate premium of vehicles.<br>
+                        Vehicles are of two types – "Two Wheeler" and "Four Wheeler". Each vehicle
+                        is identified by vehicle id, type, cost and premium amount.<br>
+                        Premium amount is 2% of the vehicle cost for two wheelers and 6% of the
+                        vehicle cost for four wheelers. Calculate the premium amount and display the
+                        vehicle details.
+                    </p>
+                    <p>
+                        Identify the class name and attributes to represent vehicles. Drag and drop
+                        the chosen class name, attributes and methods into the appropriate section
+                        of the box shown below.
+                    </p>
+                </div>
+                <br>
+                <div class="row flex-space-around min-height-400">
+                    <div class="two-div"><br>
+                        <ul id="qtnMagnets" class="droptrue ui-sortable"><h4>Options:</h4><li id="card7">display_vehicle_details()</li><li id="card1">vehicle_id</li><li id="card6">calculate_premium()</li><li id="card5">__init__()</li><li id="card8">TwoWheeler</li><li id="card3">vehicle_cost</li><li id="card0">Vehicle</li><li id="card2">vehicle_type</li><li id="card9">FourWheeler</li><li id="card4">premium_amount</li><li id="card10">premium_percentage</li><li id="card11">calculate_vehicle_cost()</li></ul>
+                    </div>
+                    <div class="two-div"><br>
+                        <ul id="ansMagnets1" class="droptrue ansMagnets ui-sortable"><h4>ClassName</h4></ul>
+                        <ul id="ansMagnets2" class="droptrue ansMagnets ui-sortable"><h4>Attributes</h4></ul>
+                        <ul id="ansMagnets3" class="droptrue ansMagnets ui-sortable"><h4>Methods</h4></ul>
+                    </div>
+                </div>
+                <br>
+                <div class="row text-center"><div id="msgDiv" style="null"></div>
+                    <button class="btn btn-inverse pull-left button-of-material ripple" id="submit" data-pyaid="1">Submit</button>
+                    <button class="btn btn-inverse pull-left margin-left-20 button-of-material ripple margin-left-m" id="reset">Reset</button>
+                </div>
+                <div id="tell" class="text-center">
+                    <p id="telltext"></p>
+                </div>
+            </div>
+        </div>
+
+
+
+        <script type="text/javascript">
+
+            var answers1 = ["undefined", "card0"];
+            var answers2 = ["undefined", "card2", "card3", "card1", "card4"];
+            var answers3 = ["undefined", "card5", "card6", "card7"];
+            var options = ["Vehicle", "vehicle_id", "vehicle_type", "vehicle_cost", "premium_amount", "__init__()", "calculate_premium()", "display_vehicle_details()", "TwoWheeler", "FourWheeler", "premium_percentage", "calculate_vehicle_cost()"];
+            var assgnmtId = 4;
+            var assgnmtType = 'A';
+
+        </script>
+        <script type="text/javascript" src="./magnetTester.js.download"></script>
+
+
+</div></body></html>

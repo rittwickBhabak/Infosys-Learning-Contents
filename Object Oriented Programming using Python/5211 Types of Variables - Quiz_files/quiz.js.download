@@ -1,0 +1,1246 @@
+$(function () {
+    setTimeout(function() {
+        var hostName = window.location.hostname == "localhost" ? "http://vilp_mys-02" : "http://" + window.location.hostname;
+        var URLs = [
+            hostName + "/ILPProgTier2/api/content/SQuizResult",
+            hostName + "/AcmeTier/api/AcmeGamify/FetchActivityPoints",
+            hostName + "/ILPProgTier2/api/Content/QuizHints"
+        ]
+        var toBeSent;
+        var optionIds = [];
+        var mtf = false;
+        var optSelected = "";
+        var quizType = "";
+        $("#hint").hide();
+        submit = function (event) {
+            var childEle = $("#quiz div");
+            var jsonString = [];
+            var flag = false;
+            var ddFlag = false;
+    
+            for (i = 0; i < childEle.length; i++) {
+                if (/^q\d+$/.test(childEle[i].id)) {
+                    var temp = childEle[i].id;
+                    var options = $("#" + childEle[i].id).find('input');
+                    optSelected = "";
+    
+                    if (options.length > 0) {
+                        quizType = $("#" + childEle[i].id).find('#' + options[0].id).attr('type');
+                        for (var j = 1; j <= options.length; j++) {
+                            if ($("#" + childEle[i].id).find('#' + options[j - 1].id).is(":checked")) {
+                                optSelected += options[j - 1].id + ",";
+                            }
+                        }
+                        if (optSelected.length == 0) {
+                            flag = true;
+                            break;
+                        }
+                    }
+                    else if ($("#" + childEle[i].id).find('select').length > 0) {
+                        quizType = "dropdown";
+                        options = $("#" + childEle[i].id).find('select');
+                        for (var k = 0; k < options.length; k++) {
+                            if ($("#" + options[k].id + " option:selected").val() > 0) {
+                                optSelected += (options[k].id + "-" + $("#" + options[k].id + " option:selected").val()) + ",";
+                            }
+                            else {
+                                flag = true;
+                                break;
+                            }
+                        }
+                    }
+                    else if ($("#" + childEle[i].id).find('table').length > 0) {
+                        //options = $("#" + childEle[i].id).find('table tr:not(.spacer)');
+                        //var noOfOptions = options.length;
+                        optSelected = "";
+                        var userAnswers = event.data.ans,
+                            len = userAnswers.length;
+                        userAnswers.sort();
+                        if (len > 0) {
+                            optSelected = "" + userAnswers.toString() + ",";
+                        }
+                        else {
+                            flag = true;
+                            break;
+                        }
+                        mtf = true;
+                        quizType = "mtf";
+    
+                    } else if ($("#" + childEle[i].id).find('.dragDropQuiz').length > 0) {
+                        optSelected = "";
+                        var opts = [];
+                        var dropped = $("#" + childEle[i].id).find('.fbox').sort();
+                        quizType = "dragDrop";
+                        for (var i = 0, len = dropped.length; i < len; i++) {
+                            if (/^dd\d+$/.test(dropped[i].id)) {
+                                var ans = $(dropped[i]).find('div.draggable');
+                                for (var j = 0, leng = ans.length; j < leng; j++) {
+                                    opts.push(dropped[i].id + "-" + ans[j].id);
+                                }
+                            }
+                            if (opts.length == 0) {
+                                optSelected = "";
+                                ddFlag = true;
+                            } else {
+                                opts.sort();
+                                optSelected = opts.join(",") + ",";
+    
+                            }
+                        }
+    
+                    } else { }
+                    if (optSelected == "dd1-1,dd1-2,dd2-3,dd3-4,dd4-5,") {
+                        storeResults(100,optSelected);
+                    } else {
+                        storeResults(0,optSelected);
+                    }
+                    var obj = {};
+                    qstn = parseInt(temp.substring(1, temp.length));
+                    obj["QuizId"] = qstn;
+                    obj["PageUrl"] = (window.location.href + "").replace("oopn", "oop");
+                    obj["UserSolution"] = optSelected.substring(0, optSelected.length - 1);
+                    jsonString.push(obj);
+                }
+            }
+            if (flag || ddFlag) {
+                var tell = $('#telltext');
+    
+                ddFlag ? tell.html("Please drop the answers into the boxes") : tell.html("Please select answer for all the questions");
+                $("#hint").hide();
+                $('#hintmark').hide();
+                $('#verify').attr("src", "");
+                $("div[id$='m'][id^='q']").hide();
+            }
+            else {
+                toBeSent = JSON.stringify(jsonString);
+                saveData(jsonString);
+            }
+        };
+        $("#submitAnswer").click(function () {
+            $("#submitAnswer").attr('disabled', true);
+            $("#submitAnswer").addClass("disabled-button");
+            $("#submitAnswer").removeClass("ripple");
+            var counter = 5;
+            $("#submitAnswer").text("Try again in " + counter);
+            for (i = 0; i < 5; i++) {
+                var time = i * 1000
+                setTimeout(function () {
+                    $("#submitAnswer").text("Try again in " + counter);
+                    counter = counter - 1;
+                }, time);
+            }
+            setTimeout(function () {
+                $("#submitAnswer").attr('disabled', false);
+                $("#submitAnswer").text("Submit");
+                $("#submitAnswer").removeClass("disabled-button");
+                $("#submitAnswer").addClass("ripple");
+            }, 5000);
+        })
+        function saveData(toBeSent) {
+            var serviceUrl = URLs[0];
+            var quizID;
+            var quizResult;
+            if (toBeSent[0].UserSolution == "dd1-1,dd1-2,dd2-3,dd3-4,dd4-5") {
+                var output = [{ QuizId: 23, Result: 1 }];
+            } else {
+                var output = [{ QuizId: 23, Result: 0 }];
+            }
+            quizResult = output[0].Result;
+            $.each(output, function (ind, obj1) {
+                quizID = obj1.QuizId;
+                if (parseInt(obj1.Result) == 1) {
+                    if (optionIds.length != 0) {
+                        for (i = 0; i < optionIds.length; i++) {
+                            $('#' + optionIds[i]).removeClass("wrongAnswer");
+                        }
+                    }
+                    //if ($("#quiz table").length > 0) {
+                    //    $('td[id^=""]').addClass('correct');
+                    //    $('td[id^=""]').removeClass('wrong locked normal');
+                    //}    
+                    $('#q' + obj1.QuizId + 'm').html('<p class="text-success">Your answer is Right</p>');
+                }
+                else {
+                    if (obj1.Options != null) {
+                        $.each(obj1.Options, function (indx, opts) {
+                            var exists = false;
+                            for (i = 0; i < optionIds.length; i++) {
+                                if (opts.Option == optionIds[i]) {
+                                    exists = true;
+                                }
+                            }
+                            if (!exists) {
+                                optionIds[optionIds.length] = opts.Option;
+                            }
+                            if (opts.OptionResult != 0) {
+                                $('#' + opts.Option).addClass("wrongAnswer");
+                            }
+                            else {
+                                $('#' + opts.Option).removeClass("wrongAnswer");
+                            }
+                        });
+                    } else if (obj1.Answer != null && mtf == true) {
+                        var count = 0;
+                        var arr = [];
+                        var answers = (obj1.Answer).split(',');
+                        var userAnswers = optSelected.split(',');
+                        $.each(answers, function (i, v) {
+                            value = v.split('-')[1];
+                            key = v.split('-')[0];
+    
+                            if (userAnswers.indexOf(v) >= 0) {
+                                count += 1;
+                                arr.push('#' + key);
+                                arr.push('#' + value);
+                            } else {
+                                $('#' + value).addClass('wrong');
+                                $('#' + key).addClass('wrong');
+    
+                                $('#' + value).removeClass('correct locked normal');
+                                $('#' + key).removeClass('correct locked normal');
+                            }
+                        })
+    
+                        $.each(arr, function (i, v) {
+                            $(v).addClass('correct');
+                            $(v).removeClass('wrong locked normal');
+                        })
+    
+                    }
+                    $('#q' + obj1.QuizId + 'm').html('<p class="text-danger">Your answer is Wrong</p>');
+                }
+            });
+    
+            $('#telltext').html("Your answers are submitted.");
+    
+            /*********************************************/
+            var serviceUrl = URLs[2];
+            var quizID;
+            var quizResult;
+            // console.log("data", JSON.parse(toBeSent)[0].UserSolution);
+    
+            var optionhints = ["<p>self.variable_name indicates it is an instance variable. Hence name and gender are instance variables.<br/>A variable which is created outside any method in a class is a static variable. Hence water_source is a static variable<br/>Any method created with @staticmethod is a static method. Hence get_water_source() is a static method.<br/>Any other method in a class is an instance method. Hence drinks_water() is an instance method.<br/>Hence this is the answer.</p>",
+                "<p>What does self.variable_name indicate?<br/>What does @staticmethod indicate?<br/>Can we have a variable created outside any method in a class? What type of variable will that be?<br/>You have gone wrong in your answer, explore the code further by trying to answer the above question.</p>"];
+            $("#hint").hide();
+            $('#hintmark').hide();
+            $('#verify').attr("src", "")
+            $('#hintmark').attr("src", "")
+            var params = 0;
+            $("#hint").removeClass();
+            var cls;
+            cls = $('#q' + quizID + 'm').find('p').attr('class');
+            $("#hint").addClass(cls);
+            $("div[id$='m'][id^='q']").show();
+            if (cls == 'text-success') {
+                params = 0;
+                $('#verify').attr("src", "icon_correct.png")
+            } else {
+                params = 1;
+                $('#verify').attr("src", "icon_incorrect.png")
+            }
+            $('#hintmark').show();
+            $('#H1').show();
+            $('#hintmark').attr("src", "icon_thought.png")
+            $("#hint").css("font-weight", "normal");
+            $("#hint").show().html(optionhints[params]);
+            $("#hint").find("table").addClass(cls);
+            $("#hint").find("p").addClass(cls);
+    
+            /*********************************************/
+    
+    
+            // $.ajax({
+            //     type: "POST",
+            //     dataType: "json",
+            //     crossDomain: true,
+            //     contentType: "application/json; charset=utf-8",
+            //     data: toBeSent,
+            //     url: serviceUrl,
+            //     traditional: true,
+            //     xhrFields: {
+            //         withCredentials: true
+            //     },
+            //     success: function (jsonData) {
+            //         var output = JSON.parse(jsonData.Output);
+            //         console.log(output);
+            //         quizResult = output[0].Result;
+            //         console.log(quizResult);
+            //         $.each(output, function (ind, obj1) {
+            //             quizID = obj1.QuizId;
+            //             if (parseInt(obj1.Result) == 1) {
+            //                 if (optionIds.length != 0) {
+            //                     for (i = 0; i < optionIds.length; i++) {                                
+            //                         $('#' + optionIds[i]).removeClass("wrongAnswer");
+            //                     }
+            //                 }
+            //                 //if ($("#quiz table").length > 0) {
+            //                 //    $('td[id^=""]').addClass('correct');
+            //                 //    $('td[id^=""]').removeClass('wrong locked normal');
+            //                 //}    
+            //                 $('#q' + obj1.QuizId + 'm').html('<p class="text-success">Your answer is Right</p>');
+            //             }
+            //             else {
+            //                 if (obj1.Options != null) {
+            //                     $.each(obj1.Options, function (indx, opts) {
+            //                         var exists = false;
+            //                         for (i = 0; i < optionIds.length; i++) {
+            //                             if (opts.Option == optionIds[i]) {
+            //                                 exists = true;
+            //                             }
+            //                         }
+            //                         if (!exists) {
+            //                             optionIds[optionIds.length] = opts.Option;
+            //                         }
+            //                         if (opts.OptionResult != 0) {
+            //                             $('#' + opts.Option).addClass("wrongAnswer");
+            //                         }
+            //                         else {
+            //                             $('#' + opts.Option).removeClass("wrongAnswer");
+            //                         }
+            //                     });
+            //                 } else if (obj1.Answer != null && mtf == true) {
+            //                     var count = 0;
+            //                     var arr = [];
+            //                     var answers = (obj1.Answer).split(',');
+            //                     var userAnswers = optSelected.split(',');
+            //                     $.each(answers, function (i, v) {
+            //                         value = v.split('-')[1];
+            //                         key = v.split('-')[0];
+    
+            //                         if (userAnswers.indexOf(v) >= 0) {
+            //                             count += 1;
+            //                             arr.push('#' + key);
+            //                             arr.push('#' + value);
+            //                         } else {
+            //                             $('#' + value).addClass('wrong');
+            //                             $('#' + key).addClass('wrong');
+    
+            //                             $('#' + value).removeClass('correct locked normal');
+            //                             $('#' + key).removeClass('correct locked normal');
+            //                         }
+            //                     })
+    
+            //                     $.each(arr, function (i, v) {
+            //                         $(v).addClass('correct');
+            //                         $(v).removeClass('wrong locked normal');
+            //                     })
+    
+            //                 }
+            //                 $('#q' + obj1.QuizId + 'm').html('<p class="text-danger">Your answer is Wrong</p>');
+            //             }
+            //         });
+    
+            //         $('#telltext').html("Your answers are submitted.");
+    
+            //         /*********************************************/
+            //             var serviceUrl = URLs[2];
+            //             var quizID;
+            //             var quizResult;
+            //             console.log("data", JSON.parse(toBeSent)[0].UserSolution);
+            //             $.ajax({
+            //                 type: "POST",
+            //                 dataType: "json",
+            //                 crossDomain: true,
+            //                 contentType: "application/json; charset=utf-8",
+            //                 data: JSON.stringify(JSON.parse(toBeSent)[0]),
+            //                 url: serviceUrl,
+            //                 traditional: true,
+            //                 xhrFields: {
+            //                     withCredentials: true
+            //                 },
+            //                 success: function (jsonData) {
+            //                     //console.log(jsonData)
+            //                     jsonData = jsonData.replace(/\s+/g, ' ').trim();
+            //                     jsonData = jsonData.replace(/\r?\n|\r/g, " ");
+            //                     var optionhints = JSON.parse(jsonData);
+            //                     console.log(quizType)
+            //                     switch (quizType) {
+            //                         case 'radio':
+            //                             $("#hint").hide();
+            //                             $('#hintmark').hide();
+            //                             $('#verify').attr("src", "")
+            //                             $('#hintmark').attr("src", "")
+            //                             var params = $("input[type=radio]:checked").attr('data-opt');
+            //                             //$("td[class^='hint']").hide();
+            //                             //$("td[class^='hint"+params+"']").show();
+            //                             $("#hint").removeClass();
+            //                             var cls;
+            //                             if ($("input[type=radio]:checked").val()) {
+            //                                 cls = $('#q' + quizID + 'm').find('p').attr('class');
+            //                                 $("#hint").addClass(cls);
+            //                                 if (cls == 'text-success') {
+            //                                     //$("#hint").css("color", "#3c763d");
+            //                                     $('#verify').attr("src", "../../images/icon_correct.png")
+            //                                 } else {
+            //                                     //$("#hint").css("color", "#a94442");
+            //                                     $('#verify').attr("src", "../../images/icon_incorrect.png")
+            //                                 }
+            //                                 $("div[id$='m'][id^='q']").show();
+            //                                 $('#hintmark').show();
+            //                                 $('#hintmark').attr("src", "../../images/icon_thought.png")
+            //                                 //$("#hint").css("font-weight", "normal");
+    
+            //                                 //console.log(params);
+            //                                 $("#hint").show().html(optionhints[params]);
+            //                                 $("#hint").find("table").addClass(cls);
+            //                                 $("#hint").find("p").addClass(cls);
+            //                                 //$("#hint").find("table").css("font-weight","normal");
+            //                                 //$("#hint").find("p").css("font-weight", "normal");
+            //                             }
+    
+            //                             break;
+    
+            //                         case 'checkbox':
+            //                             $("#hint").hide();
+            //                             $('#hintmark').hide();
+            //                             $('#verify').attr("src", "")
+            //                             $('#hintmark').attr("src", "")
+            //                             var params = 0;
+            //                             $("#hint").removeClass();
+            //                             var cls;
+            //                             cls = $('#q' + quizID + 'm').find('p').attr('class');
+            //                             $("#hint").addClass(cls);
+            //                             $("div[id$='m'][id^='q']").show();
+            //                             if (cls == 'text-success') {
+            //                                 params = 0;
+            //                                 //$("#hint").css("color", "#3c763d");
+            //                                 $('#verify').attr("src", "../../images/icon_correct.png")
+            //                             } else {
+            //                                 params = 1;
+            //                                 //$("#hint").css("color", "#a94442");
+            //                                 $('#verify').attr("src", "../../images/icon_incorrect.png")
+            //                             }
+            //                             $('#hintmark').show();
+            //                             $('#hintmark').attr("src", "../../images/icon_thought.png")
+            //                             $("#hint").css("font-weight", "normal");
+            //                             $("#hint").show().html(optionhints[params]);
+            //                             $("#hint").find("table").addClass(cls);
+            //                             $("#hint").find("p").addClass(cls);
+            //                             break;
+    
+            //                         case 'mtf':
+            //                             $("#hint").hide();
+            //                             $('#hintmark').hide();
+            //                             $('#verify').attr("src", "")
+            //                             $('#hintmark').attr("src", "")
+            //                             var params = 0;
+            //                             $("#hint").removeClass();
+            //                             var cls;
+            //                             cls = $('#q' + quizID + 'm').find('p').attr('class');
+            //                             $("#hint").addClass(cls);
+            //                             $("div[id$='m'][id^='q']").show();
+            //                             if (cls == 'text-success') {
+            //                                 params = 0;
+            //                                 //$("#hint").css("color", "#3c763d");
+            //                                 $('#verify').attr("src", "../../images/icon_correct.png")
+            //                             } else {
+            //                                 params = 1;
+            //                                 //$("#hint").css("color", "#a94442");
+            //                                 $('#verify').attr("src", "../../images/icon_incorrect.png")
+            //                             }
+            //                             $('#hintmark').show();
+            //                             $('#H1').show();
+            //                             $('#hintmark').attr("src", "../../images/icon_thought.png")
+            //                             $("#hint").css("font-weight", "normal");
+            //                             $("#hint").show().html(optionhints[params]);
+            //                             $("#hint").find("table").addClass(cls);
+            //                             $("#hint").find("p").addClass(cls);
+            //                             break;
+    
+            //                         case 'dragDrop':
+            //                             $("#hint").hide();
+            //                             $('#hintmark').hide();
+            //                             $('#verify').attr("src", "")
+            //                             $('#hintmark').attr("src", "")
+            //                             var params = 0;
+            //                             $("#hint").removeClass();
+            //                             var cls;
+            //                             cls = $('#q' + quizID + 'm').find('p').attr('class');
+            //                             $("#hint").addClass(cls);
+            //                             $("div[id$='m'][id^='q']").show();
+            //                             if (cls == 'text-success') {
+            //                                 params = 0;
+            //                                 $('#verify').attr("src", "../../images/icon_correct.png")
+            //                             } else {
+            //                                 params = 1;
+            //                                 $('#verify').attr("src", "../../images/icon_incorrect.png")
+            //                             }
+            //                             $('#hintmark').show();
+            //                             $('#H1').show();
+            //                             $('#hintmark').attr("src", "../../images/icon_thought.png")
+            //                             $("#hint").css("font-weight", "normal");
+            //                             $("#hint").show().html(optionhints[params]);
+            //                             $("#hint").find("table").addClass(cls);
+            //                             $("#hint").find("p").addClass(cls);
+            //                             break;
+    
+            //                         case 'dropdown':
+            //                             $("#hint").hide();
+            //                             $('#hintmark').hide();
+            //                             $('#verify').attr("src", "")
+            //                             $('#hintmark').attr("src", "")
+            //                             var params = 0;
+            //                             $("#hint").removeClass();
+            //                             var cls;
+            //                             cls = $('#q' + quizID + 'm').find('p').attr('class');
+            //                             $("#hint").addClass(cls);
+            //                             $("div[id$='m'][id^='q']").show();
+            //                             if ((JSON.parse(toBeSent)[0].UserSolution).indexOf(",") >= 0) {
+            //                                 if (cls == 'text-success') {
+            //                                     params = 0;
+            //                                     $('#verify').attr("src", "../../images/icon_correct.png")
+            //                                 } else {
+            //                                     params = 1;
+            //                                     $('#verify').attr("src", "../../images/icon_incorrect.png")
+            //                                 }
+            //                             } else {
+            //                                 var sol=JSON.parse(toBeSent)[0].UserSolution;
+            //                                 params = Number(sol.substr(sol.length - 1)) - 1;
+            //                                 if (cls == 'text-success') {
+            //                                     //$("#hint").css("color", "#3c763d");
+            //                                     $('#verify').attr("src", "../../images/icon_correct.png")
+            //                                 } else {
+            //                                     //$("#hint").css("color", "#a94442");
+            //                                     $('#verify').attr("src", "../../images/icon_incorrect.png")
+            //                                 }
+            //                             }
+            //                             $('#hintmark').show();
+            //                             $('#hintmark').attr("src", "../../images/icon_thought.png")
+            //                             $("#hint").css("font-weight", "normal");
+            //                             $("#hint").show().html(optionhints[params]);
+            //                             $("#hint").find("table").addClass(cls);
+            //                             $("#hint").find("p").addClass(cls);
+            //                             break;
+            //                     }
+            //                 }
+            //             })
+            //         /*********************************************/
+    
+            //     },
+            //     error: function (xhr) {
+            //         console.log(xhr);
+            //     },
+            //     complete: function (xhr, status) {
+            //     }
+            // });
+        }
+        function makeFile(data, fileName) {
+            const formdata = new FormData()
+            const blob = new Blob([JSON.stringify(data)], { type: 'application/json' })
+            try {
+                const file = new File([blob], fileName + '.json')
+                formdata.append('file', file)
+            } catch (ex) {
+                blob['lastModifiedDate'] = new Date()
+                formdata.append('file', blob, fileName + '.json')
+            }
+            return formdata
+        }
+    
+        function storeResults(flag, userAnswers) {
+            var s = window.location.href;
+            var lexId = s.slice(s.lastIndexOf("/lex_auth") + 1, s.indexOf("/", s.lastIndexOf("/lex_auth") + 1));
+            // console.log(lexId);
+            var contentServiceCreateDirectory = "/apis/protected/v8/user/exercise/createContentDirectory/" + lexId;
+            var contentServiceUploadFile = "/apis/protected/v8/user/exercise/uploadFileToContentDirectory/" + lexId ;
+            var nodeServicePostFileUrl = "/apis/protected/v8/user/code/pf/submit/" + lexId;
+            var date = new Date();
+            var fileName = "Submission_PF_" + date.getFullYear() + "_" + String(Number(date.getMonth()) + 1) + "_" + date.getDate() + "_" + date.getHours() + "_" + date.getMinutes() + "_" + date.getMilliseconds();
+            var data = {
+                "userAnswers": userAnswers,
+                "flag": flag
+            };
+            var file = makeFile(data, fileName)
+            $.ajax({
+                type: "POST", url: contentServiceCreateDirectory, success: function (result) {
+                    // console.log(result);
+                    $.ajax({
+                        type: "POST", url: contentServiceUploadFile, data: file, contentType: false, processData: false, success: function (result) {
+                            // console.log(result);
+                            var postFileUrlData = {
+                                user_id_type: "uuid",
+                                submission_type: "pf_pseudo_code",
+                                url: result.contentUrl,
+                                total_testcases: "1",
+                                testcases_passed: flag == 100 ? "1" : "0",
+                                testcases_failed: flag == 100 ? "0" : "1",
+                                result_percent: "100"
+                            };
+                            $.ajax({
+                                type: "POST", url: nodeServicePostFileUrl, data: postFileUrlData,
+                                success: function (jsonData) {
+                                    if (jsonData.response == "Success") {
+                                        $("#tell").html('<p id="telltext">Your solution has been submitted.</p>');
+                                    }
+                                    else
+                                        $("#tell").html('<p id="telltext">Submission failed. Please try again after sometime.</p>');
+                                },
+                                error: function (xhr) {
+                                    $("#tell").html('<p id="telltext">Submission failed. Please try again after sometime.</p>');
+                                    // console.log(xhr);
+                                },
+                            });
+                        }
+                    })
+                }, error: function (xhr, ajaxOptions, thrownError) {
+                    // console.log(xhr.status);
+                    if (xhr.status == "409") {
+                        $.ajax({
+                            type: "POST", url: contentServiceUploadFile, data: file, contentType: false, processData: false, success: function (result) {
+                                // console.log(result);
+                                var postFileUrlData = {
+                                    "user_id_type": "uuid",
+                                    "submission_type": "pf_pseudo_code",
+                                    "url": result.contentUrl,
+                                    "total_testcases": "1",
+                                    testcases_passed: flag == 100 ? "1" : "0",
+                                    testcases_failed: flag == 100 ? "0" : "1",
+                                    "result_percent": "100"
+                                };
+                                $.ajax({
+                                    type: "POST", url: nodeServicePostFileUrl, data: postFileUrlData,
+                                    success: function (jsonData) {
+                                        // console.log(jsonData)
+                                        if (jsonData.response == "Success") {
+                                            $("#tell").html('<p id="telltext">Your solution has been submitted.</p>');
+                                        }
+                                        else
+                                            $("#tell").html('<p id="telltext">Submission failed. Please try again after sometime.</p>');
+                                    },
+                                    error: function (xhr) {
+                                        $("#tell").html('<p id="telltext">Submission failed. Please try again after sometime.</p>');
+                                        // console.log(xhr);
+                                    },
+                                });
+                            }
+                        });
+                    } else {
+                        // console.log("error");
+                        $("#tell").html('<p id="telltext">Submission failed. Please try again after sometime.</p>');
+                    }
+                }
+            });
+        }
+    },1000);
+    var hostName = window.location.hostname == "localhost" ? "http://vilp_mys-02" : "http://" + window.location.hostname;
+        var URLs = [
+            hostName + "/ILPProgTier2/api/content/SQuizResult",
+            hostName + "/AcmeTier/api/AcmeGamify/FetchActivityPoints",
+            hostName + "/ILPProgTier2/api/Content/QuizHints"
+        ]
+        var toBeSent;
+        var optionIds = [];
+        var mtf = false;
+        var optSelected = "";
+        var quizType = "";
+        $("#hint").hide();
+        submit = function (event) {
+            var childEle = $("#quiz div");
+            var jsonString = [];
+            var flag = false;
+            var ddFlag = false;
+    
+            for (i = 0; i < childEle.length; i++) {
+                if (/^q\d+$/.test(childEle[i].id)) {
+                    var temp = childEle[i].id;
+                    var options = $("#" + childEle[i].id).find('input');
+                    optSelected = "";
+    
+                    if (options.length > 0) {
+                        quizType = $("#" + childEle[i].id).find('#' + options[0].id).attr('type');
+                        for (var j = 1; j <= options.length; j++) {
+                            if ($("#" + childEle[i].id).find('#' + options[j - 1].id).is(":checked")) {
+                                optSelected += options[j - 1].id + ",";
+                            }
+                        }
+                        if (optSelected.length == 0) {
+                            flag = true;
+                            break;
+                        }
+                    }
+                    else if ($("#" + childEle[i].id).find('select').length > 0) {
+                        quizType = "dropdown";
+                        options = $("#" + childEle[i].id).find('select');
+                        for (var k = 0; k < options.length; k++) {
+                            if ($("#" + options[k].id + " option:selected").val() > 0) {
+                                optSelected += (options[k].id + "-" + $("#" + options[k].id + " option:selected").val()) + ",";
+                            }
+                            else {
+                                flag = true;
+                                break;
+                            }
+                        }
+                    }
+                    else if ($("#" + childEle[i].id).find('table').length > 0) {
+                        //options = $("#" + childEle[i].id).find('table tr:not(.spacer)');
+                        //var noOfOptions = options.length;
+                        optSelected = "";
+                        var userAnswers = event.data.ans,
+                            len = userAnswers.length;
+                        userAnswers.sort();
+                        if (len > 0) {
+                            optSelected = "" + userAnswers.toString() + ",";
+                        }
+                        else {
+                            flag = true;
+                            break;
+                        }
+                        mtf = true;
+                        quizType = "mtf";
+    
+                    } else if ($("#" + childEle[i].id).find('.dragDropQuiz').length > 0) {
+                        optSelected = "";
+                        var opts = [];
+                        var dropped = $("#" + childEle[i].id).find('.fbox').sort();
+                        quizType = "dragDrop";
+                        for (var i = 0, len = dropped.length; i < len; i++) {
+                            if (/^dd\d+$/.test(dropped[i].id)) {
+                                var ans = $(dropped[i]).find('div.draggable');
+                                for (var j = 0, leng = ans.length; j < leng; j++) {
+                                    opts.push(dropped[i].id + "-" + ans[j].id);
+                                }
+                            }
+                            if (opts.length == 0) {
+                                optSelected = "";
+                                ddFlag = true;
+                            } else {
+                                opts.sort();
+                                optSelected = opts.join(",") + ",";
+    
+                            }
+                        }
+    
+                    } else { }
+                    if (optSelected == "dd1-1,dd1-2,dd2-3,dd3-4,dd4-5,") {
+                        storeResults(100,optSelected);
+                    } else {
+                        storeResults(0,optSelected);
+                    }
+                    var obj = {};
+                    qstn = parseInt(temp.substring(1, temp.length));
+                    obj["QuizId"] = qstn;
+                    obj["PageUrl"] = (window.location.href + "").replace("oopn", "oop");
+                    obj["UserSolution"] = optSelected.substring(0, optSelected.length - 1);
+                    jsonString.push(obj);
+                }
+            }
+            if (flag || ddFlag) {
+                var tell = $('#telltext');
+    
+                ddFlag ? tell.html("Please drop the answers into the boxes") : tell.html("Please select answer for all the questions");
+                $("#hint").hide();
+                $('#hintmark').hide();
+                $('#verify').attr("src", "");
+                $("div[id$='m'][id^='q']").hide();
+            }
+            else {
+                toBeSent = JSON.stringify(jsonString);
+                saveData(jsonString);
+            }
+        };
+        $("#submitAnswer").click(function () {
+            $("#submitAnswer").attr('disabled', true);
+            $("#submitAnswer").addClass("disabled-button");
+            $("#submitAnswer").removeClass("ripple");
+            var counter = 5;
+            $("#submitAnswer").text("Try again in " + counter);
+            for (i = 0; i < 5; i++) {
+                var time = i * 1000
+                setTimeout(function () {
+                    $("#submitAnswer").text("Try again in " + counter);
+                    counter = counter - 1;
+                }, time);
+            }
+            setTimeout(function () {
+                $("#submitAnswer").attr('disabled', false);
+                $("#submitAnswer").text("Submit");
+                $("#submitAnswer").removeClass("disabled-button");
+                $("#submitAnswer").addClass("ripple");
+            }, 5000);
+        })
+        function saveData(toBeSent) {
+            var serviceUrl = URLs[0];
+            var quizID;
+            var quizResult;
+            if (toBeSent[0].UserSolution == "dd1-1,dd1-2,dd2-3,dd3-4,dd4-5") {
+                var output = [{ QuizId: 23, Result: 1 }];
+            } else {
+                var output = [{ QuizId: 23, Result: 0 }];
+            }
+            quizResult = output[0].Result;
+            $.each(output, function (ind, obj1) {
+                quizID = obj1.QuizId;
+                if (parseInt(obj1.Result) == 1) {
+                    if (optionIds.length != 0) {
+                        for (i = 0; i < optionIds.length; i++) {
+                            $('#' + optionIds[i]).removeClass("wrongAnswer");
+                        }
+                    }
+                    //if ($("#quiz table").length > 0) {
+                    //    $('td[id^=""]').addClass('correct');
+                    //    $('td[id^=""]').removeClass('wrong locked normal');
+                    //}    
+                    $('#q' + obj1.QuizId + 'm').html('<p class="text-success">Your answer is Right</p>');
+                }
+                else {
+                    if (obj1.Options != null) {
+                        $.each(obj1.Options, function (indx, opts) {
+                            var exists = false;
+                            for (i = 0; i < optionIds.length; i++) {
+                                if (opts.Option == optionIds[i]) {
+                                    exists = true;
+                                }
+                            }
+                            if (!exists) {
+                                optionIds[optionIds.length] = opts.Option;
+                            }
+                            if (opts.OptionResult != 0) {
+                                $('#' + opts.Option).addClass("wrongAnswer");
+                            }
+                            else {
+                                $('#' + opts.Option).removeClass("wrongAnswer");
+                            }
+                        });
+                    } else if (obj1.Answer != null && mtf == true) {
+                        var count = 0;
+                        var arr = [];
+                        var answers = (obj1.Answer).split(',');
+                        var userAnswers = optSelected.split(',');
+                        $.each(answers, function (i, v) {
+                            value = v.split('-')[1];
+                            key = v.split('-')[0];
+    
+                            if (userAnswers.indexOf(v) >= 0) {
+                                count += 1;
+                                arr.push('#' + key);
+                                arr.push('#' + value);
+                            } else {
+                                $('#' + value).addClass('wrong');
+                                $('#' + key).addClass('wrong');
+    
+                                $('#' + value).removeClass('correct locked normal');
+                                $('#' + key).removeClass('correct locked normal');
+                            }
+                        })
+    
+                        $.each(arr, function (i, v) {
+                            $(v).addClass('correct');
+                            $(v).removeClass('wrong locked normal');
+                        })
+    
+                    }
+                    $('#q' + obj1.QuizId + 'm').html('<p class="text-danger">Your answer is Wrong</p>');
+                }
+            });
+    
+            $('#telltext').html("Your answers are submitted.");
+    
+            /*********************************************/
+            var serviceUrl = URLs[2];
+            var quizID;
+            var quizResult;
+            // console.log("data", JSON.parse(toBeSent)[0].UserSolution);
+    
+            var optionhints = ["<p>self.variable_name indicates it is an instance variable. Hence name and gender are instance variables.<br/>A variable which is created outside any method in a class is a static variable. Hence water_source is a static variable<br/>Any method created with @staticmethod is a static method. Hence get_water_source() is a static method.<br/>Any other method in a class is an instance method. Hence drinks_water() is an instance method.<br/>Hence this is the answer.</p>",
+                "<p>What does self.variable_name indicate?<br/>What does @staticmethod indicate?<br/>Can we have a variable created outside any method in a class? What type of variable will that be?<br/>You have gone wrong in your answer, explore the code further by trying to answer the above question.</p>"];
+            $("#hint").hide();
+            $('#hintmark').hide();
+            $('#verify').attr("src", "")
+            $('#hintmark').attr("src", "")
+            var params = 0;
+            $("#hint").removeClass();
+            var cls;
+            cls = $('#q' + quizID + 'm').find('p').attr('class');
+            $("#hint").addClass(cls);
+            $("div[id$='m'][id^='q']").show();
+            if (cls == 'text-success') {
+                params = 0;
+                $('#verify').attr("src", "icon_correct.png")
+            } else {
+                params = 1;
+                $('#verify').attr("src", "icon_incorrect.png")
+            }
+            $('#hintmark').show();
+            $('#H1').show();
+            $('#hintmark').attr("src", "icon_thought.png")
+            $("#hint").css("font-weight", "normal");
+            $("#hint").show().html(optionhints[params]);
+            $("#hint").find("table").addClass(cls);
+            $("#hint").find("p").addClass(cls);
+    
+            /*********************************************/
+    
+    
+            // $.ajax({
+            //     type: "POST",
+            //     dataType: "json",
+            //     crossDomain: true,
+            //     contentType: "application/json; charset=utf-8",
+            //     data: toBeSent,
+            //     url: serviceUrl,
+            //     traditional: true,
+            //     xhrFields: {
+            //         withCredentials: true
+            //     },
+            //     success: function (jsonData) {
+            //         var output = JSON.parse(jsonData.Output);
+            //         console.log(output);
+            //         quizResult = output[0].Result;
+            //         console.log(quizResult);
+            //         $.each(output, function (ind, obj1) {
+            //             quizID = obj1.QuizId;
+            //             if (parseInt(obj1.Result) == 1) {
+            //                 if (optionIds.length != 0) {
+            //                     for (i = 0; i < optionIds.length; i++) {                                
+            //                         $('#' + optionIds[i]).removeClass("wrongAnswer");
+            //                     }
+            //                 }
+            //                 //if ($("#quiz table").length > 0) {
+            //                 //    $('td[id^=""]').addClass('correct');
+            //                 //    $('td[id^=""]').removeClass('wrong locked normal');
+            //                 //}    
+            //                 $('#q' + obj1.QuizId + 'm').html('<p class="text-success">Your answer is Right</p>');
+            //             }
+            //             else {
+            //                 if (obj1.Options != null) {
+            //                     $.each(obj1.Options, function (indx, opts) {
+            //                         var exists = false;
+            //                         for (i = 0; i < optionIds.length; i++) {
+            //                             if (opts.Option == optionIds[i]) {
+            //                                 exists = true;
+            //                             }
+            //                         }
+            //                         if (!exists) {
+            //                             optionIds[optionIds.length] = opts.Option;
+            //                         }
+            //                         if (opts.OptionResult != 0) {
+            //                             $('#' + opts.Option).addClass("wrongAnswer");
+            //                         }
+            //                         else {
+            //                             $('#' + opts.Option).removeClass("wrongAnswer");
+            //                         }
+            //                     });
+            //                 } else if (obj1.Answer != null && mtf == true) {
+            //                     var count = 0;
+            //                     var arr = [];
+            //                     var answers = (obj1.Answer).split(',');
+            //                     var userAnswers = optSelected.split(',');
+            //                     $.each(answers, function (i, v) {
+            //                         value = v.split('-')[1];
+            //                         key = v.split('-')[0];
+    
+            //                         if (userAnswers.indexOf(v) >= 0) {
+            //                             count += 1;
+            //                             arr.push('#' + key);
+            //                             arr.push('#' + value);
+            //                         } else {
+            //                             $('#' + value).addClass('wrong');
+            //                             $('#' + key).addClass('wrong');
+    
+            //                             $('#' + value).removeClass('correct locked normal');
+            //                             $('#' + key).removeClass('correct locked normal');
+            //                         }
+            //                     })
+    
+            //                     $.each(arr, function (i, v) {
+            //                         $(v).addClass('correct');
+            //                         $(v).removeClass('wrong locked normal');
+            //                     })
+    
+            //                 }
+            //                 $('#q' + obj1.QuizId + 'm').html('<p class="text-danger">Your answer is Wrong</p>');
+            //             }
+            //         });
+    
+            //         $('#telltext').html("Your answers are submitted.");
+    
+            //         /*********************************************/
+            //             var serviceUrl = URLs[2];
+            //             var quizID;
+            //             var quizResult;
+            //             console.log("data", JSON.parse(toBeSent)[0].UserSolution);
+            //             $.ajax({
+            //                 type: "POST",
+            //                 dataType: "json",
+            //                 crossDomain: true,
+            //                 contentType: "application/json; charset=utf-8",
+            //                 data: JSON.stringify(JSON.parse(toBeSent)[0]),
+            //                 url: serviceUrl,
+            //                 traditional: true,
+            //                 xhrFields: {
+            //                     withCredentials: true
+            //                 },
+            //                 success: function (jsonData) {
+            //                     //console.log(jsonData)
+            //                     jsonData = jsonData.replace(/\s+/g, ' ').trim();
+            //                     jsonData = jsonData.replace(/\r?\n|\r/g, " ");
+            //                     var optionhints = JSON.parse(jsonData);
+            //                     console.log(quizType)
+            //                     switch (quizType) {
+            //                         case 'radio':
+            //                             $("#hint").hide();
+            //                             $('#hintmark').hide();
+            //                             $('#verify').attr("src", "")
+            //                             $('#hintmark').attr("src", "")
+            //                             var params = $("input[type=radio]:checked").attr('data-opt');
+            //                             //$("td[class^='hint']").hide();
+            //                             //$("td[class^='hint"+params+"']").show();
+            //                             $("#hint").removeClass();
+            //                             var cls;
+            //                             if ($("input[type=radio]:checked").val()) {
+            //                                 cls = $('#q' + quizID + 'm').find('p').attr('class');
+            //                                 $("#hint").addClass(cls);
+            //                                 if (cls == 'text-success') {
+            //                                     //$("#hint").css("color", "#3c763d");
+            //                                     $('#verify').attr("src", "../../images/icon_correct.png")
+            //                                 } else {
+            //                                     //$("#hint").css("color", "#a94442");
+            //                                     $('#verify').attr("src", "../../images/icon_incorrect.png")
+            //                                 }
+            //                                 $("div[id$='m'][id^='q']").show();
+            //                                 $('#hintmark').show();
+            //                                 $('#hintmark').attr("src", "../../images/icon_thought.png")
+            //                                 //$("#hint").css("font-weight", "normal");
+    
+            //                                 //console.log(params);
+            //                                 $("#hint").show().html(optionhints[params]);
+            //                                 $("#hint").find("table").addClass(cls);
+            //                                 $("#hint").find("p").addClass(cls);
+            //                                 //$("#hint").find("table").css("font-weight","normal");
+            //                                 //$("#hint").find("p").css("font-weight", "normal");
+            //                             }
+    
+            //                             break;
+    
+            //                         case 'checkbox':
+            //                             $("#hint").hide();
+            //                             $('#hintmark').hide();
+            //                             $('#verify').attr("src", "")
+            //                             $('#hintmark').attr("src", "")
+            //                             var params = 0;
+            //                             $("#hint").removeClass();
+            //                             var cls;
+            //                             cls = $('#q' + quizID + 'm').find('p').attr('class');
+            //                             $("#hint").addClass(cls);
+            //                             $("div[id$='m'][id^='q']").show();
+            //                             if (cls == 'text-success') {
+            //                                 params = 0;
+            //                                 //$("#hint").css("color", "#3c763d");
+            //                                 $('#verify').attr("src", "../../images/icon_correct.png")
+            //                             } else {
+            //                                 params = 1;
+            //                                 //$("#hint").css("color", "#a94442");
+            //                                 $('#verify').attr("src", "../../images/icon_incorrect.png")
+            //                             }
+            //                             $('#hintmark').show();
+            //                             $('#hintmark').attr("src", "../../images/icon_thought.png")
+            //                             $("#hint").css("font-weight", "normal");
+            //                             $("#hint").show().html(optionhints[params]);
+            //                             $("#hint").find("table").addClass(cls);
+            //                             $("#hint").find("p").addClass(cls);
+            //                             break;
+    
+            //                         case 'mtf':
+            //                             $("#hint").hide();
+            //                             $('#hintmark').hide();
+            //                             $('#verify').attr("src", "")
+            //                             $('#hintmark').attr("src", "")
+            //                             var params = 0;
+            //                             $("#hint").removeClass();
+            //                             var cls;
+            //                             cls = $('#q' + quizID + 'm').find('p').attr('class');
+            //                             $("#hint").addClass(cls);
+            //                             $("div[id$='m'][id^='q']").show();
+            //                             if (cls == 'text-success') {
+            //                                 params = 0;
+            //                                 //$("#hint").css("color", "#3c763d");
+            //                                 $('#verify').attr("src", "../../images/icon_correct.png")
+            //                             } else {
+            //                                 params = 1;
+            //                                 //$("#hint").css("color", "#a94442");
+            //                                 $('#verify').attr("src", "../../images/icon_incorrect.png")
+            //                             }
+            //                             $('#hintmark').show();
+            //                             $('#H1').show();
+            //                             $('#hintmark').attr("src", "../../images/icon_thought.png")
+            //                             $("#hint").css("font-weight", "normal");
+            //                             $("#hint").show().html(optionhints[params]);
+            //                             $("#hint").find("table").addClass(cls);
+            //                             $("#hint").find("p").addClass(cls);
+            //                             break;
+    
+            //                         case 'dragDrop':
+            //                             $("#hint").hide();
+            //                             $('#hintmark').hide();
+            //                             $('#verify').attr("src", "")
+            //                             $('#hintmark').attr("src", "")
+            //                             var params = 0;
+            //                             $("#hint").removeClass();
+            //                             var cls;
+            //                             cls = $('#q' + quizID + 'm').find('p').attr('class');
+            //                             $("#hint").addClass(cls);
+            //                             $("div[id$='m'][id^='q']").show();
+            //                             if (cls == 'text-success') {
+            //                                 params = 0;
+            //                                 $('#verify').attr("src", "../../images/icon_correct.png")
+            //                             } else {
+            //                                 params = 1;
+            //                                 $('#verify').attr("src", "../../images/icon_incorrect.png")
+            //                             }
+            //                             $('#hintmark').show();
+            //                             $('#H1').show();
+            //                             $('#hintmark').attr("src", "../../images/icon_thought.png")
+            //                             $("#hint").css("font-weight", "normal");
+            //                             $("#hint").show().html(optionhints[params]);
+            //                             $("#hint").find("table").addClass(cls);
+            //                             $("#hint").find("p").addClass(cls);
+            //                             break;
+    
+            //                         case 'dropdown':
+            //                             $("#hint").hide();
+            //                             $('#hintmark').hide();
+            //                             $('#verify').attr("src", "")
+            //                             $('#hintmark').attr("src", "")
+            //                             var params = 0;
+            //                             $("#hint").removeClass();
+            //                             var cls;
+            //                             cls = $('#q' + quizID + 'm').find('p').attr('class');
+            //                             $("#hint").addClass(cls);
+            //                             $("div[id$='m'][id^='q']").show();
+            //                             if ((JSON.parse(toBeSent)[0].UserSolution).indexOf(",") >= 0) {
+            //                                 if (cls == 'text-success') {
+            //                                     params = 0;
+            //                                     $('#verify').attr("src", "../../images/icon_correct.png")
+            //                                 } else {
+            //                                     params = 1;
+            //                                     $('#verify').attr("src", "../../images/icon_incorrect.png")
+            //                                 }
+            //                             } else {
+            //                                 var sol=JSON.parse(toBeSent)[0].UserSolution;
+            //                                 params = Number(sol.substr(sol.length - 1)) - 1;
+            //                                 if (cls == 'text-success') {
+            //                                     //$("#hint").css("color", "#3c763d");
+            //                                     $('#verify').attr("src", "../../images/icon_correct.png")
+            //                                 } else {
+            //                                     //$("#hint").css("color", "#a94442");
+            //                                     $('#verify').attr("src", "../../images/icon_incorrect.png")
+            //                                 }
+            //                             }
+            //                             $('#hintmark').show();
+            //                             $('#hintmark').attr("src", "../../images/icon_thought.png")
+            //                             $("#hint").css("font-weight", "normal");
+            //                             $("#hint").show().html(optionhints[params]);
+            //                             $("#hint").find("table").addClass(cls);
+            //                             $("#hint").find("p").addClass(cls);
+            //                             break;
+            //                     }
+            //                 }
+            //             })
+            //         /*********************************************/
+    
+            //     },
+            //     error: function (xhr) {
+            //         console.log(xhr);
+            //     },
+            //     complete: function (xhr, status) {
+            //     }
+            // });
+        }
+        function makeFile(data, fileName) {
+            const formdata = new FormData()
+            const blob = new Blob([JSON.stringify(data)], { type: 'application/json' })
+            try {
+                const file = new File([blob], fileName + '.json')
+                formdata.append('file', file)
+            } catch (ex) {
+                blob['lastModifiedDate'] = new Date()
+                formdata.append('file', blob, fileName + '.json')
+            }
+            return formdata
+        }
+    
+        function storeResults(flag, userAnswers) {
+            var s = window.location.href;
+            var lexId = s.slice(s.lastIndexOf("/lex_auth") + 1, s.indexOf("/", s.lastIndexOf("/lex_auth") + 1));
+            // console.log(lexId);
+            var contentServiceCreateDirectory = "/apis/protected/v8/user/exercise/createContentDirectory/" + lexId;
+            var contentServiceUploadFile = "/apis/protected/v8/user/exercise/uploadFileToContentDirectory/" + lexId ;
+            var nodeServicePostFileUrl = "/apis/protected/v8/user/code/pf/submit/" + lexId;
+            var date = new Date();
+            var fileName = "Submission_PF_" + date.getFullYear() + "_" + String(Number(date.getMonth()) + 1) + "_" + date.getDate() + "_" + date.getHours() + "_" + date.getMinutes() + "_" + date.getMilliseconds();
+            var data = {
+                "userAnswers": userAnswers,
+                "flag": flag
+            };
+            var file = makeFile(data, fileName)
+            $.ajax({
+                type: "POST", url: contentServiceCreateDirectory, success: function (result) {
+                    // console.log(result);
+                    $.ajax({
+                        type: "POST", url: contentServiceUploadFile, data: file, contentType: false, processData: false, success: function (result) {
+                            // console.log(result);
+                            var postFileUrlData = {
+                                user_id_type: "uuid",
+                                submission_type: "pf_pseudo_code",
+                                url: result.contentUrl,
+                                total_testcases: "1",
+                                testcases_passed: flag == 100 ? "1" : "0",
+                                testcases_failed: flag == 100 ? "0" : "1",
+                                result_percent: "100"
+                            };
+                            $.ajax({
+                                type: "POST", url: nodeServicePostFileUrl, data: postFileUrlData,
+                                success: function (jsonData) {
+                                    if (jsonData.response == "Success") {
+                                        $("#tell").html('<p id="telltext">Your solution has been submitted.</p>');
+                                    }
+                                    else
+                                        $("#tell").html('<p id="telltext">Submission failed. Please try again after sometime.</p>');
+                                },
+                                error: function (xhr) {
+                                    $("#tell").html('<p id="telltext">Submission failed. Please try again after sometime.</p>');
+                                    // console.log(xhr);
+                                },
+                            });
+                        }
+                    })
+                }, error: function (xhr, ajaxOptions, thrownError) {
+                    // console.log(xhr.status);
+                    if (xhr.status == "409") {
+                        $.ajax({
+                            type: "POST", url: contentServiceUploadFile, data: file, contentType: false, processData: false, success: function (result) {
+                                // console.log(result);
+                                var postFileUrlData = {
+                                    "user_id_type": "uuid",
+                                    "submission_type": "pf_pseudo_code",
+                                    "url": result.contentUrl,
+                                    "total_testcases": "1",
+                                    testcases_passed: flag == 100 ? "1" : "0",
+                                    testcases_failed: flag == 100 ? "0" : "1",
+                                    "result_percent": "100"
+                                };
+                                $.ajax({
+                                    type: "POST", url: nodeServicePostFileUrl, data: postFileUrlData,
+                                    success: function (jsonData) {
+                                        // console.log(jsonData)
+                                        if (jsonData.response == "Success") {
+                                            $("#tell").html('<p id="telltext">Your solution has been submitted.</p>');
+                                        }
+                                        else
+                                            $("#tell").html('<p id="telltext">Submission failed. Please try again after sometime.</p>');
+                                    },
+                                    error: function (xhr) {
+                                        $("#tell").html('<p id="telltext">Submission failed. Please try again after sometime.</p>');
+                                        // console.log(xhr);
+                                    },
+                                });
+                            }
+                        });
+                    } else {
+                        // console.log("error");
+                        $("#tell").html('<p id="telltext">Submission failed. Please try again after sometime.</p>');
+                    }
+                }
+            });
+        }
+});
